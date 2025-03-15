@@ -1,8 +1,8 @@
-document.addEventListener('DOMContentLoaded', function() {
-    var menuBtn = document.querySelector('.menu-btn');
-    var menu = document.querySelector('.menu');
+document.addEventListener('DOMContentLoaded', () => {
+    const menuBtn = document.getElementById('menuBtn');
+    const menu = document.getElementById('menu');
 
-    menuBtn.addEventListener('click', function() {
+    menuBtn.addEventListener('click', () => {
         menu.classList.toggle('open');
     });
 });
