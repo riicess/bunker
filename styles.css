@@ -49,21 +49,25 @@ body, html {
     z-index: 1000;
 }
 
+.menu-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
 .menu {
     position: fixed;
     top: 0;
     left: 20px;
-    width: 50px; /* Initial width of the menu */
+    width: 50px;
     height: 100%;
     background-color: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
-    transition: width 0.3s ease-in-out; /* Smooth transition for width change */
+    transition: width 0.3s ease-in-out;
     border-radius: 0 20px 20px 0;
     z-index: 999;
 }
 
 .menu:hover {
-    width: 200px; /* Expanded width when hovered */
+    width: 150px;
 }
 
 .menu ul {
@@ -74,19 +78,26 @@ body, html {
 
 .menu li {
     margin-bottom: 20px;
-    opacity: 0; /* Initially hidden */
-    transition: opacity 0.3s ease; /* Smooth transition for opacity change */
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
 .menu:hover li {
-    opacity: 1; /* Fully visible when menu is hovered */
+    opacity: 1;
 }
 
 .menu a {
     text-decoration: none;
     color: white;
-    font-size: 18px;
-    transition: color 0.3s ease;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+}
+
+.menu a img {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
 }
 
 .menu a:hover {
@@ -100,5 +111,18 @@ body, html {
     background: #212121;
     box-shadow: 15px 15px 30px rgb(25, 25, 25),
                 -15px -15px 30px rgb(60, 60, 60);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+}
+
+.card-content {
+    width: 100%;
 }
 
