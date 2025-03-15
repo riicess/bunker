@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const menuBtn = document.getElementById('menuBtn');
-    const menu = document.getElementById('menu');
+    var menuBtn = document.querySelector('.menu-btn');
+    var menu = document.querySelector('.menu');
 
     menuBtn.addEventListener('click', function() {
         menu.classList.toggle('open');
