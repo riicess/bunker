@@ -1,9 +1,10 @@
 body, html {
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
     height: 100%;
     overflow: hidden;
+    color: white;
 }
 
 .container {
@@ -48,25 +49,21 @@ body, html {
     z-index: 1000;
 }
 
-.menu-btn:hover {
-    background: rgba(255, 255, 255, 0.3);
-}
-
 .menu {
     position: fixed;
     top: 0;
-    left: -250px;
-    width: 250px;
+    left: 20px;
+    width: 50px; /* Initial width of the menu */
     height: 100%;
     background-color: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
-    transition: left 0.3s ease-in-out;
+    transition: width 0.3s ease-in-out; /* Smooth transition for width change */
     border-radius: 0 20px 20px 0;
     z-index: 999;
 }
 
-.menu.open {
-    left: 0;
+.menu:hover {
+    width: 200px; /* Expanded width when hovered */
 }
 
 .menu ul {
@@ -77,6 +74,12 @@ body, html {
 
 .menu li {
     margin-bottom: 20px;
+    opacity: 0; /* Initially hidden */
+    transition: opacity 0.3s ease; /* Smooth transition for opacity change */
+}
+
+.menu:hover li {
+    opacity: 1; /* Fully visible when menu is hovered */
 }
 
 .menu a {
@@ -88,5 +91,14 @@ body, html {
 
 .menu a:hover {
     color: #00ffcc;
+}
+
+.card {
+    width: 190px;
+    height: 254px;
+    border-radius: 30px;
+    background: #212121;
+    box-shadow: 15px 15px 30px rgb(25, 25, 25),
+                -15px -15px 30px rgb(60, 60, 60);
 }
 
