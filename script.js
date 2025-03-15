@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Redirect to "home" if the current path is the root
-    if (window.location.pathname === '/' || window.location.pathname === '/index.html') {
+    if (window.location.pathname === '/' || window.location.pathname === '/home.html') {
         window.location.replace('/home');
     }
 });
