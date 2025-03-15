@@ -1,31 +1,50 @@
-body {
-    font-family: Arial, sans-serif;
+body, html {
     margin: 0;
     padding: 0;
-    line-height: 1.6;
+    font-family: Arial, sans-serif;
+    height: 100%;
+    overflow: hidden;
 }
 
-header {
-    background-color: #333;
-    color: #fff;
-    padding: 1rem;
-    position: relative;
+.container {
+    width: 100%;
+    height: 100vh;
+    background: 
+        radial-gradient(circle at 100% 50%, #ff00cc 0% 2%, #00ffcc 3% 5%, transparent 6%),
+        radial-gradient(circle at 0% 50%, #ff00cc 0% 2%, #00ffcc 3% 5%, transparent 6%),
+        radial-gradient(ellipse at 50% 0%, #3300ff 0% 3%, transparent 4%) 10px 10px,
+        radial-gradient(circle at 50% 50%, #00ffcc 0% 1%, #ff00cc 2% 3%, #3300ff 4% 5%, transparent 6%) 20px 20px,
+        repeating-linear-gradient(45deg, #1a1a1a, #1a1a1a 10px, #242424 10px, #242424 20px);
+    background-size: 50px 50px, 50px 50px, 40px 40px, 60px 60px, 100% 100%;
+    animation: shift 15s linear infinite;
 }
 
-h1 {
-    margin: 0;
-    text-align: center;
+@keyframes shift {
+    0% {
+        background-position: 0 0, 0 0, 10px 10px, 20px 20px, 0 0;
+    }
+    100% {
+        background-position: 50px 50px, -50px -50px, 60px 60px, 80px 80px, 0 0;
+    }
 }
 
 .menu-btn {
-    position: absolute;
-    top: 1rem;
-    left: 1rem;
-    background: none;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background: rgba(255, 255, 255, 0.2);
     border: none;
-    color: #fff;
-    font-size: 1.5rem;
+    color: white;
+    font-size: 24px;
+    padding: 10px 15px;
     cursor: pointer;
+    border-radius: 50%;
+    backdrop-filter: blur(5px);
+    transition: all 0.3s ease;
+}
+
+.menu-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
 }
 
 .menu {
@@ -34,8 +53,10 @@ h1 {
     left: -250px;
     width: 250px;
     height: 100%;
-    background-color: #f4f4f4;
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
     transition: left 0.3s ease-in-out;
+    border-radius: 0 20px 20px 0;
 }
 
 .menu.open {
@@ -44,32 +65,21 @@ h1 {
 
 .menu ul {
     list-style-type: none;
-    padding: 0;
+    padding: 20px;
+    margin-top: 60px;
 }
 
 .menu li {
-    padding: 1rem;
+    margin-bottom: 20px;
 }
 
 .menu a {
     text-decoration: none;
-    color: #333;
+    color: white;
+    font-size: 18px;
+    transition: color 0.3s ease;
 }
 
-main {
-    padding: 2rem;
-}
-
-section {
-    margin-bottom: 2rem;
-}
-
-footer {
-    background-color: #333;
-    color: #fff;
-    text-align: center;
-    padding: 1rem;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
+.menu a:hover {
+    color: #00ffcc;
 }
