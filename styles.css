@@ -34,7 +34,7 @@ body, html {
 
 .card {
     width: 190px;
-    height: 254px;
+    height: 150px;
     border-radius: 30px;
     background: #212121;
     box-shadow: 15px 15px 30px rgb(25, 25, 25),
@@ -52,6 +52,7 @@ body, html {
  
 .card-content {
     width: 100%;
+    color: beige;
 }
 
 .card1 {
@@ -74,6 +75,7 @@ body, html {
 
 .card1-content {
     width: 100%;
+    color: beige;
 }
 
 /* New bottom menu styles */
