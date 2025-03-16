@@ -1,11 +1,11 @@
 # 🚀 Welcome to **riicess's Bunker**! 🛠️
 
-Hey there! Welcome to my digital bunker. This is where I stash my projects, expFeel free to explore and see what I've been working on!
+Hey there! Welcome to my digital bunker. This is where I stash my projects, Feel free to explore and see what I've been working on!
 
 ---
 # ⚠️ Currently there is **no** project here and the site is **under development** ⚠️
 
-⭐️ If you like what you see, don't forget to **star** the repos you enjoy! ⭐️
+## ⭐️ If you like what you see, don't forget to **star** the repos you enjoy! ⭐️
 
 ---
 
