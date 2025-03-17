@@ -341,3 +341,23 @@ body, html {
     }
 }
 
+/* Hidden menu styles */
+.hidden-menu {
+    display: none;
+    flex-direction: row;
+    width: auto;
+    background-color: transparent; /* Match the background */
+    justify-content: center;
+    border-radius: 5px;
+    align-items: center;
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2; /* Ensure the menu is visible */
+}
+
+.hidden-menu.active {
+    display: flex;
+}
+
