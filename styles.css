@@ -176,30 +176,14 @@ body, html {
     width: 20px;
     height: 20px;
     margin: 17px 18px 0 18px;
-    transform: rotate(90deg); /* Rotate arrow downwards */
+    transform: rotate(180deg);
     fill: #f0eeef;
 }
 
 .button:hover .button-box,
 .button:focus .button-box {
     transition: 0.4s;
-    transform: translateY(56px); /* Move arrow downwards */
-}
-
-.button-box::after {
-    content: "";
-    position: absolute;
-    top: -56px;
-    left: 0;
-    width: 100%;
-    height: 56px;
-    background: transparent;
-    transition: transform 0.4s;
-}
-
-.button:hover .button-box::after,
-.button:focus .button-box::after {
-    transform: translateY(56px); /* Move new arrow upwards */
+    transform: translateX(-56px);
 }
 
 /* New bottom menu styles */
