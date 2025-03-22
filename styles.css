@@ -21,6 +21,7 @@ body, html {
     background-size: 50px 50px, 50px 50px, 40px 40px, 60px 60px, 100% 100%;
     animation: shift 15s linear infinite;
     z-index: 0;
+    overflow: hidden;
 }
 
 @keyframes shift {
@@ -32,19 +33,29 @@ body, html {
     }
 }
 
-/* Page content containers */
-.page-content {
-    position: absolute;
-    width: 100%;
+/* Content wrapper */
+.content-wrapper {
+    position: relative;
+    width: 200%;
     height: 100%;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.5s ease, visibility 0.5s ease;
+    display: flex;
+    transition: transform 0.5s ease;
 }
 
-.page-content.active {
-    opacity: 1;
-    visibility: visible;
+/* Page content containers */
+.page-content {
+    width: 50%;
+    height: 100%;
+    position: relative;
+    transition: 0.5s ease;
+}
+
+input[id="radio-1"]:checked ~ .container .content-wrapper {
+    transform: translateX(0);
+}
+
+input[id="radio-2"]:checked ~ .container .content-wrapper {
+    transform: translateX(-50%);
 }
 
 /* Card styles */
@@ -65,7 +76,6 @@ body, html {
     text-align: center;
     padding: 20px;
     backdrop-filter: blur(10px);
-    transition: transform 0.5s ease, opacity 0.5s ease;
 }
 
 .card-content {
@@ -117,11 +127,11 @@ input[type="radio"]:checked + label {
     color: #00ffcc;
 }
 
-input[id="radio-1"]:checked ~ .glider {
+input[id="radio-1"]:checked ~ #navigation .glider {
     transform: translateX(0);
 }
 
-input[id="radio-2"]:checked ~ .glider {
+input[id="radio-2"]:checked ~ #navigation .glider {
     transform: translateX(110px);
 }
 

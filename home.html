@@ -7,22 +7,28 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- Radio buttons moved outside container for proper selector targeting -->
+    <input type="radio" id="radio-1" name="tabs" checked="">
+    <input type="radio" id="radio-2" name="tabs">
+    
     <div class="container">
-        <!-- Home Card Content -->
-        <div id="home-content" class="page-content active">
-            <div class="card">
-                <div class="card-content">
-                    <h3 style="font-size:30px; color: #f0f0f0;">Welcome to Riices's bunker</h3>
+        <div class="content-wrapper">
+            <!-- Home Card Content -->
+            <div id="home-content" class="page-content">
+                <div class="card">
+                    <div class="card-content">
+                        <h3 style="font-size:30px; color: #f0f0f0;">Welcome to Riices's bunker</h3>
+                    </div>
                 </div>
             </div>
-        </div>
-        
-        <!-- About Card Content -->
-        <div id="about-content" class="page-content">
-            <div class="card">
-                <div class="card-content">
-                    <h3 style="font-size:20px; color: #f0f0f0;">Under Development</h3>
-                    <p style="font-size:30px; color: #f0f0f0;"> 🚧</p>
+            
+            <!-- About Card Content -->
+            <div id="about-content" class="page-content">
+                <div class="card">
+                    <div class="card-content">
+                        <h3 style="font-size:20px; color: #f0f0f0;">Under Development</h3>
+                        <p style="font-size:30px; color: #f0f0f0;"> 🚧</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -31,14 +37,10 @@
     <!-- Bottom Navigation Menu (Tabs) -->
     <div id="navigation">
         <div class="tabs">
-            <input type="radio" id="radio-1" name="tabs" checked="">
             <label class="tab" for="radio-1">Home</label>
-            <input type="radio" id="radio-2" name="tabs">
             <label class="tab" for="radio-2">About</label>
             <span class="glider"></span>
         </div>
     </div>
-
-    <script src="script.js"></script>
 </body>
 </html>
