@@ -84,12 +84,13 @@ input[id="radio-2"]:checked ~ .container .content-wrapper {
     text-align: center;
     padding: 20px;
     backdrop-filter: blur(10px);
-    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
-                opacity 0.5s ease,
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+                opacity 0.4s ease,
                 box-shadow 0.3s ease;
     opacity: 0;
     z-index: 1;
     transform-style: preserve-3d;
+    will-change: transform, opacity; /* Performance optimization */
 }
 
 .card.card-active {
@@ -107,6 +108,22 @@ input[id="radio-2"]:checked ~ .container .content-wrapper {
     z-index: 1;
 }
 
+/* Directional entrance animations */
+.card.card-enter-from-left {
+    transform: translate(-150%, -50%) rotateY(-30deg);
+    opacity: 0;
+}
+
+.card.card-enter-from-right {
+    transform: translate(50%, -50%) rotateY(30deg);
+    opacity: 0;
+}
+
+.card.card-enter-from-bottom {
+    transform: translate(-50%, 50%) rotateX(30deg);
+    opacity: 0;
+}
+
 .card-content {
     width: 100%;
     display: flex;
@@ -117,7 +134,7 @@ input[id="radio-2"]:checked ~ .container .content-wrapper {
 }
 
 /* Arrow styles */
-.arrow-down, .arrow-left, .arrow-right {
+.arrow-down, .arrow-left, .arrow-right, .arrow-up {
     width: 40px;
     height: 40px;
     border-radius: 50%;
@@ -129,22 +146,23 @@ input[id="radio-2"]:checked ~ .container .content-wrapper {
     cursor: pointer;
     transition: all 0.3s ease;
     border: 1px solid transparent;
+    -webkit-tap-highlight-color: transparent; /* Remove tap highlight on mobile */
 }
 
-.arrow-down i, .arrow-left i, .arrow-right i {
+.arrow-down i, .arrow-left i, .arrow-right i, .arrow-up i {
     color: #f0f0f0;
     font-size: 18px;
     transition: all 0.3s ease;
 }
 
-.arrow-down:hover, .arrow-left:hover, .arrow-right:hover {
+.arrow-down:hover, .arrow-left:hover, .arrow-right:hover, .arrow-up:hover {
     background: #333333;
     border-color: #00ffcc;
     box-shadow: 0 0 15px rgba(0, 255, 204, 0.5);
     transform: scale(1.1);
 }
 
-.arrow-down:hover i, .arrow-left:hover i, .arrow-right:hover i {
+.arrow-down:hover i, .arrow-left:hover i, .arrow-right:hover i, .arrow-up:hover i {
     color: #00ffcc;
 }
 
@@ -197,6 +215,7 @@ input[type="radio"] {
     cursor: pointer;
     transition: color 0.15s ease-in;
     z-index: 10;
+    -webkit-tap-highlight-color: transparent; /* Remove tap highlight on mobile */
 }
 
 input[type="radio"]:checked + label {
@@ -223,13 +242,14 @@ input[id="radio-2"]:checked ~ #navigation .glider {
     border: 1px solid #00ffcc;
 }
 
-/* Fancy card styles for the Lua card */
+/* Fancy card styles */
 .fancy-card {
     padding: 2em 1.2em;
     background: linear-gradient(to bottom, #c3e6ec, #a7d1d9);
     transition: all 0.5s ease;
     position: relative;
     overflow: hidden;
+    cursor: pointer;
 }
 
 .fancy-card:before {
@@ -314,11 +334,14 @@ input[id="radio-2"]:checked ~ #navigation .glider {
     cursor: pointer;
 }
 
-/* Responsive design */
+/* Responsive design with improved performance for mobile */
 @media (max-width: 768px) {
     .card {
         width: 280px;
         height: 200px;
+        transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+                    opacity 0.3s ease,
+                    box-shadow 0.3s ease;
     }
     
     .fancy-card {
@@ -335,6 +358,14 @@ input[id="radio-2"]:checked ~ #navigation .glider {
     
     #navigation {
         bottom: 20px;
+    }
+    
+    /* Fix for stretched arrows on mobile */
+    .arrow-down, .arrow-left, .arrow-right, .arrow-up {
+        width: 36px;
+        height: 36px;
+        min-width: 36px;
+        min-height: 36px;
     }
 }
 
@@ -358,5 +389,17 @@ input[id="radio-2"]:checked ~ #navigation .glider {
     
     .glider {
         width: 100px;
+    }
+    
+    /* Even smaller arrows for very small screens */
+    .arrow-down, .arrow-left, .arrow-right, .arrow-up {
+        width: 32px;
+        height: 32px;
+        min-width: 32px;
+        min-height: 32px;
+    }
+    
+    .arrow-down i, .arrow-left i, .arrow-right i, .arrow-up i {
+        font-size: 16px;
     }
 }
