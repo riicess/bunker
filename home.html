@@ -78,12 +78,13 @@
         const hiddenMenu = document.getElementById('hiddenMenu');
 
         menuButton.addEventListener('click', () => {
-            if (hiddenMenu.classList.contains('show')) {
+            hiddenMenu.classList.toggle('show'); // Toggle the 'show' class
+        });
+
+        // Close the menu if clicked outside
+        document.addEventListener('click', (event) => {
+            if (!menuButton.contains(event.target) && !hiddenMenu.contains(event.target)) {
                 hiddenMenu.classList.remove('show');
-                setTimeout(() => hiddenMenu.style.display = 'none', 300); // Wait for animation to finish
-            } else {
-                hiddenMenu.style.display = 'block';
-                setTimeout(() => hiddenMenu.classList.add('show'), 10); // Trigger animation
             }
         });
     </script>
