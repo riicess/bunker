@@ -8,6 +8,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const hiddenMenu = document.getElementById('hiddenMenu');
 
     menuButton.addEventListener('click', () => {
-        hiddenMenu.classList.toggle('active');
+        hiddenMenu.classList.toggle('active'); // Toggle the 'active' class to show/hide the menu
     });
 });

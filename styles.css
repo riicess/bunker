@@ -262,7 +262,8 @@ body, html {
     border-radius: 8px;
     align-items: center;
     position: fixed;
-    bottom: 90px; /* Position above the button */
+    bottom: auto; /* Remove bottom positioning */
+    top: 90px; /* Position below the button */
     right: 20px; /* Align with the button */
     z-index: 2; /* Ensure the menu is visible */
     padding: 10px 0;
@@ -320,8 +321,9 @@ button {
     justify-content: center;
     align-items: center;
     position: fixed;
-    bottom: 20px; /* Adjusted position */
-    right: 20px; /* Adjusted position */
+    bottom: auto; /* Remove bottom positioning */
+    top: 20px; /* Position at the top */
+    right: 20px; /* Keep aligned to the right */
     z-index: 3;
 }
 
