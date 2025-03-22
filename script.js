@@ -1,33 +1,32 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Get radio buttons and card containers
+    // Get elements
     const homeRadio = document.getElementById('radio-1');
     const aboutRadio = document.getElementById('radio-2');
-    const homeCards = document.querySelector('.home-cards');
-    const aboutCards = document.querySelector('.about-cards');
+    const homeContent = document.getElementById('home-content');
+    const aboutContent = document.getElementById('about-content');
 
     // Add event listeners to radio buttons
     homeRadio.addEventListener('change', () => {
-        if (homeRadio.checked) {
-            // Show home cards, hide about cards
-            homeCards.classList.add('active');
-            aboutCards.classList.remove('active');
-        }
+        homeContent.classList.add('active');
+        aboutContent.classList.remove('active');
     });
 
     aboutRadio.addEventListener('change', () => {
-        if (aboutRadio.checked) {
-            // Show about cards, hide home cards
-            aboutCards.classList.add('active');
-            homeCards.classList.remove('active');
-        }
+        aboutContent.classList.add('active');
+        homeContent.classList.remove('active');
     });
 
-    // Initialize the view based on which radio button is checked by default
+    // Set initial state
     if (homeRadio.checked) {
-        homeCards.classList.add('active');
-        aboutCards.classList.remove('active');
+        homeContent.classList.add('active');
+        aboutContent.classList.remove('active');
     } else if (aboutRadio.checked) {
-        aboutCards.classList.add('active');
-        homeCards.classList.remove('active');
+        aboutContent.classList.add('active');
+        homeContent.classList.remove('active');
     }
+
+    // Debug - log to console
+    console.log("Script loaded");
+    console.log("Home radio checked:", homeRadio.checked);
+    console.log("About radio checked:", aboutRadio.checked);
 });
