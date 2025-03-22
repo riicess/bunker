@@ -32,7 +32,6 @@ body, html {
     }
 }
 
-/* Card Styles */
 .card {
     width: 190px;
     height: 254px;
@@ -51,6 +50,10 @@ body, html {
     padding: 20px;
     backdrop-filter: blur(10px); /* Add glassy effect */
     transition: transform 0.3s ease-in-out; /* Smooth animation */
+}
+
+.card-content {
+    width: 100%;
 }
 
 .card1 {
@@ -104,157 +107,38 @@ body, html {
     color: #f0f0f0; /* Whitish color */
 }
 
-/* Arrow styles */
-.button {
-    display: block;
-    position: relative;
-    width: 56px;
-    height: 56px;
-    margin: 0;
-    overflow: hidden;
-    outline: none;
-    background-color: transparent;
-    cursor: pointer;
-    border: 0;
-    position: absolute;
-    bottom: 10%;
+.radio-buttons {
+    position: fixed;
+    bottom: 20px;
     left: 50%;
     transform: translateX(-50%);
-    z-index: 1; /* Ensure the button is visible */
-}
-
-.button:before,
-.button:after {
-    content: "";
-    position: absolute;
-    border-radius: 50%;
-    inset: 7px;
-}
-
-.button:before {
-    border: 4px solid #f0eeef;
-    transition: opacity 0.4s cubic-bezier(0.77, 0, 0.175, 1) 80ms,
-        transform 0.5s cubic-bezier(0.455, 0.03, 0.515, 0.955) 80ms;
-}
-
-.button:after {
-    border: 4px solid #96daf0;
-    transform: scale(1.3);
-    transition: opacity 0.4s cubic-bezier(0.165, 0.84, 0.44, 1),
-        transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    opacity: 0;
-}
-
-.button:hover:before,
-.button:focus:before {
-    opacity: 0;
-    transform: scale(0.7);
-    transition: opacity 0.4s cubic-bezier(0.165, 0.84, 0.44, 1),
-        transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-.button:hover:after,
-.button:focus:after {
-    opacity: 1;
-    transform: scale(1);
-    transition: opacity 0.4s cubic-bezier(0.77, 0, 0.175, 1) 80ms,
-        transform 0.5s cubic-bezier(0.455, 0.03, 0.515, 0.955) 80ms;
-}
-
-.button-box {
     display: flex;
-    position: absolute;
-    top: 0;
-    left: 0;
+    gap: 10px;
+    z-index: 2; /* Ensure the radio buttons are visible above cards */
 }
 
-.button-elem {
-    display: block;
-    width: 20px;
-    height: 20px;
-    margin: 17px 18px 0 18px;
-    transform: rotate(180deg);
-    fill: #f0eeef;
-}
-
-.button:hover .button-box,
-.button:focus .button-box {
-    transition: 0.4s;
-    transform: translateX(-56px);
-}
-
-/* New bottom menu styles (for radio buttons) */
-.tabs {
-    display: flex;
-    position: relative;
-    background-color: #fff;
-    box-shadow: 0 0 1px 0 rgba(24, 94, 224, 0.15), 0 6px 12px 0 rgba(24, 94, 224, 0.15);
-    padding: 0.75rem;
-    border-radius: 99px;
-}
-
-.tabs * {
-    z-index: 2;
-}
-
-.container input[type="radio"] {
-    display: none;
-}
-
-.tab {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 30px;
-    width: 50px;
-    font-size: .8rem;
-    color: black;
-    font-weight: 500;
-    border-radius: 99px;
+.radio-buttons label {
+    background-color: rgba(33, 33, 33, 0.5); /* Glassy effect */
+    backdrop-filter: blur(10px); 
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 5px;
     cursor: pointer;
-    transition: color 0.15s ease-in;
+    transition: background 0.3s ease;
 }
 
-.container input[type="radio"]:checked + label {
-    color: #185ee0;
+.radio-buttons input[type="radio"] {
+    display: none; /* Hide the radio button itself */
 }
 
-.container input[id="radio-1"]:checked ~ .glider {
-    transform: translateX(0);
+.radio-buttons input[type="radio"]:checked + label {
+    background-color: #00ffcc; /* Highlight the selected label */
 }
 
-.container input[id="radio-2"]:checked ~ .glider {
-    transform: translateX(100%);
+.radio-buttons label:hover {
+    background-color: rgba(0, 255, 204, 0.7); /* Slight hover effect */
 }
 
-/* Glider Effect */
-.glider {
-    position: absolute;
-    display: flex;
-    height: 30px;
-    width: 50px;
-    background-color: #e6eef9;
-    z-index: 1;
-    border-radius: 99px;
-    transition: 0.25s ease-out;
-}
-
-/* Responsiveness */
-@media (max-width: 700px) {
-  .tabs {
-    transform: scale(0.6);
-  }
-}
-
-/* Card Styles - Transition on tab switch */
-.container input[id="radio-1"]:checked ~ .glider ~ .card1 {
-    display: block;
-}
-
-.container input[id="radio-2"]:checked ~ .glider ~ .card2 {
-    display: block;
-}
-
-.container input[id="radio-2"]:checked ~ .glider ~ .card1 {
-    display: none;
+.radio-buttons input[type="radio"]:checked + label:hover {
+    background-color: #00cc99; /* Change hover effect on selected */
 }
