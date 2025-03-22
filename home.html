@@ -5,40 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>- Home -</title>
     <link rel="stylesheet" href="styles.css">
-    <style>
-        /* Add styles for the hidden menu */
-        .hidden-menu {
-            display: none;
-            position: absolute;
-            top: 100%; /* Open directly below the button */
-            left: 0;
-            background-color: #333; /* Match the menu button background */
-            color: #fff;
-            padding: 10px;
-            border-radius: 5px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            opacity: 0;
-            transform: translateY(-10px);
-            transition: opacity 0.3s ease, transform 0.3s ease;
-        }
-
-        .hidden-menu.show {
-            display: block;
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .hidden-menu a {
-            display: block;
-            color: #fff;
-            text-decoration: none;
-            margin: 5px 0;
-        }
-
-        .hidden-menu a:hover {
-            text-decoration: underline;
-        }
-    </style>
 </head>
 <body>
     <div class="container">
@@ -52,6 +18,8 @@
                 <h3 style="font-size:30px; color: #f0f0f0;">Second Card Content</h3>
             </div>
         </div>
+
+        <!-- Main Navigation Button -->
         <button class="background" id="menuButton">
             <div class="menu__icon">
                 <span></span>
@@ -59,36 +27,27 @@
                 <span></span>
             </div>
         </button>
-        <div class="hidden-menu" id="hiddenMenu">
-            <a href="/bunker/home" class="value">
-                <img src="assets/home.png" alt="Home">
-                Home
-            </a>
-            <a href="/bunker/about" class="value">
-                <img src="assets/info.png" alt="About">
-                About
-            </a>
+
+        <!-- 🔵 Hover-Based Dropdown Menu -->
+        <div class="menu-container">
+            <button class="background menu-trigger">
+                <div class="menu__icon">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </button>
+            <div class="hidden-menu">
+                <a href="/bunker/home" class="value">
+                    <img src="assets/home.png" alt="Home"> Home
+                </a>
+                <a href="/bunker/about" class="value">
+                    <img src="assets/info.png" alt="About"> About
+                </a>
+            </div>
         </div>
     </div>
 
     <script src="script.js"></script>
-    <script>
-        // Add script to toggle the hidden menu
-        const menuButton = document.getElementById('menuButton');
-        const hiddenMenu = document.getElementById('hiddenMenu');
-
-        menuButton.addEventListener('click', () => {
-            hiddenMenu.classList.toggle('show'); // Toggle the 'show' class
-        });
-
-        // Close the menu if clicked outside
-        document.addEventListener('click', (event) => {
-            if (!menuButton.contains(event.target) && !hiddenMenu.contains(event.target)) {
-                hiddenMenu.classList.remove('show');
-            }
-        });
-    </script>
 </body>
 </html>
-
-

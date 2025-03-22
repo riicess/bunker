@@ -256,23 +256,37 @@ body, html {
     position: absolute;
     top: 100%;
     left: 0;
-    background-color: #333;
+    background: rgba(33, 33, 33, 0.7); /* Glassy effect */
+    backdrop-filter: blur(10px);
     color: #fff;
     padding: 10px;
     border-radius: 5px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     
-    /* Smooth dropdown effect */
-    max-height: 0;
+    /* Hidden by default */
     opacity: 0;
-    overflow: hidden;
-    transition: max-height 0.4s ease-out, opacity 0.3s ease-out;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-.hidden-menu.show {
-    max-height: 200px; /* Adjust based on content */
+.menu-container:hover .hidden-menu {
     opacity: 1;
-    overflow: visible;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.hidden-menu a {
+    display: block;
+    color: #fff;
+    text-decoration: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: background 0.3s ease-in-out;
+}
+
+.hidden-menu a:hover {
+    background: rgba(255, 255, 255, 0.1);
 }
 
 .value {
