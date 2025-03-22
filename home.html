@@ -8,43 +8,28 @@
 </head>
 <body>
     <div class="container">
-        <div class="card1">
-            <div class="card1-content">
+        <!-- Card Content -->
+        <div class="card card1">
+            <div class="card-content">
                 <h3 style="font-size:30px; color: #f0f0f0;">Welcome to Riices's bunker</h3>
             </div>
         </div>
-        <div class="card2">
-            <div class="card2-content">
-                <h3 style="font-size:30px; color: #f0f0f0;">Second Card Content</h3>
+        <div class="card card2">
+            <div class="card-content">
+                <h3 style="font-size:20px; color: #f0f0f0;">Under Development</h3>
+                <p style="font-size:30px; color: #f0f0f0;"> 🚧</p>
             </div>
         </div>
+    </div>
 
-        <!-- Main Navigation Button -->
-        <button class="background" id="menuButton">
-            <div class="menu__icon">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </button>
-
-        <!-- 🔵 Hover-Based Dropdown Menu -->
-        <div class="menu-container">
-            <button class="background menu-trigger">
-                <div class="menu__icon">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-            </button>
-            <div class="hidden-menu">
-                <a href="/bunker/home" class="value">
-                    <img src="assets/home.png" alt="Home"> Home
-                </a>
-                <a href="/bunker/about" class="value">
-                    <img src="assets/info.png" alt="About"> About
-                </a>
-            </div>
+    <!-- Bottom Navigation Menu (Tabs) -->
+    <div class="container">
+        <div class="tabs">
+            <input type="radio" id="radio-1" name="tabs" checked="">
+            <label class="tab" for="radio-1">Home</label>
+            <input type="radio" id="radio-2" name="tabs">
+            <label class="tab" for="radio-2">About</label>
+            <span class="glider"></span>
         </div>
     </div>
 
