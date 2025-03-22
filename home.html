@@ -10,13 +10,22 @@
         .hidden-menu {
             display: none;
             position: absolute;
-            top: 50px; /* Adjust to open downwards */
+            top: 100%; /* Open directly below the button */
             left: 0;
             background-color: #333; /* Match the menu button background */
             color: #fff;
             padding: 10px;
             border-radius: 5px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .hidden-menu.show {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .hidden-menu a {
@@ -69,10 +78,12 @@
         const hiddenMenu = document.getElementById('hiddenMenu');
 
         menuButton.addEventListener('click', () => {
-            if (hiddenMenu.style.display === 'none' || hiddenMenu.style.display === '') {
-                hiddenMenu.style.display = 'block';
+            if (hiddenMenu.classList.contains('show')) {
+                hiddenMenu.classList.remove('show');
+                setTimeout(() => hiddenMenu.style.display = 'none', 300); // Wait for animation to finish
             } else {
-                hiddenMenu.style.display = 'none';
+                hiddenMenu.style.display = 'block';
+                setTimeout(() => hiddenMenu.classList.add('show'), 10); // Trigger animation
             }
         });
     </script>
