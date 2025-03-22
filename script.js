@@ -7,7 +7,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const menuButton = document.getElementById('menuButton');
     const hiddenMenu = document.getElementById('hiddenMenu');
 
-    menuButton.addEventListener('click', () => {
-        hiddenMenu.classList.toggle('active'); // Toggle the 'active' class to show/hide the menu
+    menuButton.addEventListener('click', (event) => {
+        event.stopPropagation(); // Prevent click event from bubbling to document
+        hiddenMenu.classList.toggle('show');
+    });
+
+    // Close the menu if clicking outside
+    document.addEventListener('click', (event) => {
+        if (!menuButton.contains(event.target) && !hiddenMenu.contains(event.target)) {
+            hiddenMenu.classList.remove('show');
+        }
     });
 });
