@@ -323,7 +323,8 @@ button {
     position: fixed;
     bottom: auto; /* Remove bottom positioning */
     top: 20px; /* Position at the top */
-    right: 20px; /* Keep aligned to the right */
+    left: auto; /* Remove left positioning */
+    right: 20px; /* Align to the right */
     z-index: 3;
 }
 
