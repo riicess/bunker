@@ -29,10 +29,28 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
             
+            // Direction-specific animations for the target card
+            let entranceClass = '';
+            if (arrow.classList.contains('arrow-left')) {
+                entranceClass = 'card-enter-from-right';
+            } else if (arrow.classList.contains('arrow-right')) {
+                entranceClass = 'card-enter-from-left';
+            } else {
+                entranceClass = 'card-enter-from-bottom';
+            }
+            
             // Add entrance animation to target card after a slight delay
             setTimeout(() => {
+                // Add entrance class based on arrow direction
+                sectionCards[targetIndex].classList.add(entranceClass);
+                
                 // Add active class to target card
                 sectionCards[targetIndex].classList.add('card-active');
+                
+                // Remove entrance class after animation completes
+                setTimeout(() => {
+                    sectionCards[targetIndex].classList.remove(entranceClass);
+                }, 300);
                 
                 // Update arrow direction based on which card is active
                 updateArrows(targetSection, targetIndex);
@@ -59,13 +77,20 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Reset all arrows
         sectionArrows.forEach(arrow => {
-            const direction = arrow.classList.contains('arrow-down') ? 'down' : 
-                             arrow.classList.contains('arrow-left') ? 'left' : 'right';
+            // Remove all directional classes first
+            arrow.classList.remove('arrow-up', 'arrow-left', 'arrow-right', 'arrow-down');
             
-            const iconClass = direction === 'down' ? 'fa-chevron-down' : 
-                             direction === 'left' ? 'fa-chevron-left' : 'fa-chevron-right';
-            
-            arrow.querySelector('i').className = `fas ${iconClass}`;
+            // Determine original direction class
+            if (arrow.classList.contains('arrow-down') || arrow.classList.contains('arrow-up')) {
+                arrow.classList.add('arrow-down');
+                arrow.querySelector('i').className = 'fas fa-chevron-down';
+            } else if (arrow.classList.contains('arrow-left')) {
+                arrow.classList.add('arrow-left');
+                arrow.querySelector('i').className = 'fas fa-chevron-left';
+            } else if (arrow.classList.contains('arrow-right')) {
+                arrow.classList.add('arrow-right');
+                arrow.querySelector('i').className = 'fas fa-chevron-right';
+            }
         });
         
         // If we're at the last card, set the arrow to point up (to first card)
@@ -75,14 +100,17 @@ document.addEventListener('DOMContentLoaded', () => {
                                                  #${section}-content .card.card-active .arrow-right`);
             if (arrow) {
                 if (arrow.classList.contains('arrow-down')) {
+                    arrow.classList.remove('arrow-down');
                     arrow.classList.add('arrow-up');
                     arrow.setAttribute('data-card-index', '0');
                     arrow.querySelector('i').className = 'fas fa-chevron-up';
                 } else if (arrow.classList.contains('arrow-left')) {
+                    arrow.classList.remove('arrow-left');
                     arrow.classList.add('arrow-right');
                     arrow.setAttribute('data-card-index', '0');
                     arrow.querySelector('i').className = 'fas fa-chevron-right';
                 } else if (arrow.classList.contains('arrow-right')) {
+                    arrow.classList.remove('arrow-right');
                     arrow.classList.add('arrow-left');
                     arrow.setAttribute('data-card-index', '0');
                     arrow.querySelector('i').className = 'fas fa-chevron-left';
@@ -108,8 +136,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Remove active class from all cards
         sectionCards.forEach(card => {
-            card.classList.remove('card-active');
-            card.classList.remove('card-exit');
+            card.classList.remove('card-active', 'card-exit', 'card-enter-from-left', 'card-enter-from-right', 'card-enter-from-bottom');
         });
         
         // Add active class to first card
@@ -117,6 +144,9 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Update arrows
         updateArrows(section, 0);
+        
+        // Reset any expanded detail cards
+        resetDetailCards();
         
         // Reset any delayed arrows
         const delayedArrows = document.querySelectorAll('.delayed-arrow');
@@ -126,14 +156,31 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     
-    // Initialize showDetailCard functionality for the Lua card
+    // Function to reset detail cards to collapsed state
+    function resetDetailCards() {
+        const detailTexts = document.querySelectorAll('.detail-text');
+        detailTexts.forEach(text => {
+            text.style.maxHeight = null;
+            text.style.opacity = '0';
+        });
+    }
+    
+    // Initialize detail cards functionality
     initializeDetailCards();
     
     function initializeDetailCards() {
         const detailCards = document.querySelectorAll('.detail-card');
         
         detailCards.forEach(card => {
-            card.addEventListener('click', () => {
+            card.addEventListener('click', (e) => {
+                // Prevent triggering parent card navigation
+                e.stopPropagation();
+                
+                // Don't toggle if the arrow was clicked
+                if (e.target.closest('.arrow-left, .arrow-right, .arrow-down, .arrow-up')) {
+                    return;
+                }
+                
                 const detailText = card.querySelector('.detail-text');
                 if (detailText) {
                     if (detailText.style.maxHeight) {
@@ -149,5 +196,5 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     // Debug - log to console
-    console.log("Enhanced script loaded");
+    console.log("Enhanced script loaded with improved card animations and arrow directions");
 });
