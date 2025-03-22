@@ -5,6 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>- Home -</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Add styles for the hidden menu */
+        .hidden-menu {
+            display: none;
+            position: absolute;
+            top: 50px; /* Adjust to open downwards */
+            left: 0;
+            background-color: #333; /* Match the menu button background */
+            color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .hidden-menu a {
+            display: block;
+            color: #fff;
+            text-decoration: none;
+            margin: 5px 0;
+        }
+
+        .hidden-menu a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -38,6 +63,19 @@
     </div>
 
     <script src="script.js"></script>
+    <script>
+        // Add script to toggle the hidden menu
+        const menuButton = document.getElementById('menuButton');
+        const hiddenMenu = document.getElementById('hiddenMenu');
+
+        menuButton.addEventListener('click', () => {
+            if (hiddenMenu.style.display === 'none' || hiddenMenu.style.display === '') {
+                hiddenMenu.style.display = 'block';
+            } else {
+                hiddenMenu.style.display = 'none';
+            }
+        });
+    </script>
 </body>
 </html>
 
