@@ -255,21 +255,47 @@ body, html {
 /* Hidden menu styles */
 .hidden-menu {
     display: none;
-    flex-direction: row;
-    width: auto;
-    background-color: transparent; /* Match the background */
+    flex-direction: column;
+    width: 100px;
+    background-color: rgba(74, 74, 74, 0.8); /* Match the button background */
     justify-content: center;
-    border-radius: 5px;
+    border-radius: 8px;
     align-items: center;
-    position: fixed;
-    bottom: 20px;
+    position: absolute;
+    top: 80px; /* Position below the button */
     left: 50%;
     transform: translateX(-50%);
     z-index: 2; /* Ensure the menu is visible */
+    padding: 10px 0;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
 }
 
 .hidden-menu.active {
+    max-height: 200px; /* Expand to fit content */
+    opacity: 1;
+}
+
+.value {
+    background-color: transparent;
+    border: none;
+    padding: 10px;
+    color: white;
     display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+    border-radius: 4px;
+    margin: 5px 0;
+    text-decoration: none; /* Ensure links have no underline */
+    transition: background-color 0.3s ease-in-out;
+}
+
+.value:hover {
+    background-color: rgba(255, 255, 255, 0.1); /* Highlight on hover */
 }
 
 /* Menu button styles */

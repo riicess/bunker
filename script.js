@@ -4,21 +4,10 @@ document.addEventListener('DOMContentLoaded', () => {
         window.location.replace('/bunker/home');
     }
 
-    const scrolldown = document.getElementById('scrolldown');
+    const menuButton = document.getElementById('menuButton');
     const hiddenMenu = document.getElementById('hiddenMenu');
-    let holdTimeout;
 
-    scrolldown.addEventListener('mousedown', () => {
-        holdTimeout = setTimeout(() => {
-            hiddenMenu.classList.add('active');
-        }, 1000); // 1 second hold to show the menu
-    });
-
-    scrolldown.addEventListener('mouseup', () => {
-        clearTimeout(holdTimeout);
-    });
-
-    scrolldown.addEventListener('mouseleave', () => {
-        clearTimeout(holdTimeout);
+    menuButton.addEventListener('click', () => {
+        hiddenMenu.classList.toggle('active');
     });
 });
