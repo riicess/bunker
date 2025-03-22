@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>- Riices's bunker -</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <!-- Radio buttons moved outside container for proper selector targeting -->
@@ -13,21 +14,54 @@
     
     <div class="container">
         <div class="content-wrapper">
-            <!-- Home Card Content -->
+            <!-- Home Cards Content -->
             <div id="home-content" class="page-content">
-                <div class="card">
-                    <div class="card-content">
-                        <h3 style="font-size:30px; color: #f0f0f0;">Welcome to Riices's bunker</h3>
+                <!-- Home Card Slider Container -->
+                <div class="card-slider">
+                    <!-- Home Card 1 -->
+                    <div class="card card-active">
+                        <div class="card-content">
+                            <h3 style="font-size:30px; color: #f0f0f0;">Welcome to Riices's bunker</h3>
+                            <div class="arrow-down" data-card-target="home" data-card-index="1">
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Home Card 2 -->
+                    <div class="card">
+                        <div class="card-content">
+                            <h3 style="font-size:24px; color: #f0f0f0;">This is where I keep my projects and details about them</h3>
+                            <div class="arrow-down arrow-up" data-card-target="home" data-card-index="0">
+                                <i class="fas fa-chevron-up"></i>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
             
-            <!-- About Card Content -->
+            <!-- About Cards Content -->
             <div id="about-content" class="page-content">
-                <div class="card">
-                    <div class="card-content">
-                        <h3 style="font-size:30px; color: #f0f0f0;">Under Development</h3>
-                        <p style="font-size:30px; color: #f0f0f0;"> 🚧</p>
+                <!-- About Card Slider Container -->
+                <div class="card-slider">
+                    <!-- About Card 1 -->
+                    <div class="card card-active">
+                        <div class="card-content">
+                            <h3 style="font-size:24px; color: #f0f0f0;">I'm Riices, I go to high school</h3>
+                            <div class="arrow-down" data-card-target="about" data-card-index="1">
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- About Card 2 -->
+                    <div class="card">
+                        <div class="card-content">
+                            <h3 style="font-size:20px; color: #f0f0f0;">I am a young developer but I hope I could do some projects to help people</h3>
+                            <div class="arrow-down arrow-up" data-card-target="about" data-card-index="0">
+                                <i class="fas fa-chevron-up"></i>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -42,5 +76,7 @@
             <span class="glider"></span>
         </div>
     </div>
+
+    <script src="script.js"></script>
 </body>
 </html>

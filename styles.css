@@ -58,10 +58,17 @@ input[id="radio-2"]:checked ~ .container .content-wrapper {
     transform: translateX(-50%);
 }
 
+/* Card slider */
+.card-slider {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
 /* Card styles */
 .card {
-    width: 300px;
-    height: 200px;
+    width: 320px;
+    height: 220px;
     border-radius: 30px;
     background: rgba(33, 33, 33, 0.5);
     box-shadow: 15px 15px 30px rgba(25, 25, 25, 0.5),
@@ -69,17 +76,66 @@ input[id="radio-2"]:checked ~ .container .content-wrapper {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%) translateY(100vh);
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
     padding: 20px;
     backdrop-filter: blur(10px);
+    transition: transform 0.5s ease, opacity 0.5s ease;
+    opacity: 0;
+    z-index: 1;
+}
+
+.card.card-active {
+    transform: translate(-50%, -50%);
+    opacity: 1;
+    z-index: 2;
 }
 
 .card-content {
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+}
+
+/* Arrow styles */
+.arrow-down {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(51, 51, 51, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+}
+
+.arrow-down i {
+    color: #f0f0f0;
+    font-size: 18px;
+    transition: all 0.3s ease;
+}
+
+.arrow-down:hover {
+    background: #333333;
+    border-color: #00ffcc;
+    box-shadow: 0 0 15px rgba(0, 255, 204, 0.5);
+}
+
+.arrow-down:hover i {
+    color: #00ffcc;
+}
+
+.arrow-up i {
+    transform: rotate(180deg);
 }
 
 /* Navigation tabs */
