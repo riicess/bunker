@@ -22,13 +22,19 @@ document.addEventListener('DOMContentLoaded', () => {
             const targetIndex = parseInt(arrow.getAttribute('data-card-index'));
             
             // Handle section switching
-            if ((targetSection === 'home' && arrow.classList.contains('arrow-right')) || 
-                (targetSection === 'home' && targetIndex === 3)) {
+            if ((targetSection === 'home' && targetIndex === 3) || 
+                (targetSection === 'home' && arrow.classList.contains('arrow-right'))) {
                 window.location.href = '/projects';
                 return;
-            } else if ((targetSection === 'about' && arrow.classList.contains('arrow-right')) || 
-                       (targetSection === 'about' && targetIndex === 2)) {
+            } else if ((targetSection === 'about' && targetIndex === 3) || 
+                       (targetSection === 'about' && arrow.classList.contains('arrow-right'))) {
                 window.location.href = '/skills';
+                return;
+            } else if (targetSection === 'projects' && arrow.classList.contains('arrow-right')) {
+                window.location.href = '/home';
+                return;
+            } else if (targetSection === 'skills' && arrow.classList.contains('arrow-left')) {
+                window.location.href = '/about';
                 return;
             }
 

@@ -521,6 +521,7 @@ input[id="radio-4"]:checked ~ #navigation .glider {
     
     .glider {
         width: 65px; /* Match tab width */
+        height: 30px;
     }
     
     /* Update glider positions */
