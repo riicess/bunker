@@ -1,7 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Get radio buttons for tab navigation
+    const projectsRadio = document.getElementById('radio-3');
     const homeRadio = document.getElementById('radio-1');
     const aboutRadio = document.getElementById('radio-2');
+    const skillsRadio = document.getElementById('radio-4');
 
     // Apply proper arrow styles to all arrows initially
     applyArrowStyles();
@@ -19,6 +21,13 @@ document.addEventListener('DOMContentLoaded', () => {
             const targetSection = arrow.getAttribute('data-card-target');
             const targetIndex = parseInt(arrow.getAttribute('data-card-index'));
             
+            // Handle section switching
+            if (targetSection === 'home' && arrow.classList.contains('arrow-right')) {
+                projectsRadio.checked = true;
+            } else if (targetSection === 'about' && arrow.classList.contains('arrow-right')) {
+                skillsRadio.checked = true;
+            }
+
             // Get all cards in the section
             const sectionCards = document.querySelectorAll(`#${targetSection}-content .card`);
             
@@ -85,6 +94,95 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
     
+    // Update arrow click handler
+    arrows.forEach(arrow => {
+        arrow.addEventListener('click', (e) => {
+            e.stopPropagation();
+            
+            const targetSection = arrow.getAttribute('data-card-target');
+            const targetIndex = parseInt(arrow.getAttribute('data-card-index'));
+            
+            // Handle section switching with correct direction
+            if (arrow.classList.contains('arrow-right')) {
+                if (targetSection === 'home') {
+                    projectsRadio.checked = true;
+                } else if (targetSection === 'about') {
+                    skillsRadio.checked = true;
+                }
+            } else if (arrow.classList.contains('arrow-left')) {
+                if (targetSection === 'home') {
+                    projectsRadio.checked = true;
+                } else if (targetSection === 'about') {
+                    skillsRadio.checked = true;
+                }
+            }
+            
+            // Get all cards in the section
+            const sectionCards = document.querySelectorAll(`#${targetSection}-content .card`);
+            
+            // Add exit animation to current active card
+            sectionCards.forEach(card => {
+                if (card.classList.contains('card-active')) {
+                    card.classList.add('card-exit');
+                    
+                    // Remove the exit and active classes after animation completes
+                    setTimeout(() => {
+                        card.classList.remove('card-active');
+                        card.classList.remove('card-exit');
+                    }, 300);
+                }
+            });
+            
+            // Direction-specific animations for the target card
+            let entranceClass = '';
+            if (arrow.classList.contains('arrow-left')) {
+                entranceClass = 'card-enter-from-right';
+            } else if (arrow.classList.contains('arrow-right')) {
+                entranceClass = 'card-enter-from-left';
+            } else {
+                entranceClass = 'card-enter-from-bottom';
+            }
+            
+            // Add entrance animation to target card after a slight delay
+            setTimeout(() => {
+                // Add entrance class based on arrow direction
+                sectionCards[targetIndex].classList.add(entranceClass);
+                
+                // Add active class to target card
+                sectionCards[targetIndex].classList.add('card-active');
+                
+                // Remove entrance class after animation completes
+                setTimeout(() => {
+                    sectionCards[targetIndex].classList.remove(entranceClass);
+                }, 300);
+                
+                // Update arrow direction based on which card is active
+                updateArrows(targetSection, targetIndex);
+                
+                // Show delayed arrows if needed
+                if ((targetSection === 'home' && targetIndex === 2) || 
+                    (targetSection === 'about' && targetIndex === 2)) {
+                    setTimeout(() => {
+                        const delayedArrow = sectionCards[targetIndex].querySelector('.delayed-arrow');
+                        if (delayedArrow) {
+                            delayedArrow.style.opacity = '1';
+                            delayedArrow.style.transform = 'translateY(0)';
+                        }
+                    }, 500);
+                }
+
+                // Reset any flipped cards
+                const cardInners = document.querySelectorAll('.card-inner');
+                cardInners.forEach(inner => {
+                    inner.style.transform = 'rotateY(0deg)';
+                });
+
+                // Reapply arrow styles after card change
+                applyArrowStyles();
+            }, 300);
+        });
+    });
+
     // Fix for arrow navigation
     arrows.forEach(arrow => {
         arrow.addEventListener('click', (e) => {
@@ -240,14 +338,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     // Handle tab switching
+    projectsRadio.addEventListener('change', () => {
+        resetCardsToFirst('projects');
+    });
+    
     homeRadio.addEventListener('change', () => {
-        // Reset cards to first card when switching tabs
         resetCardsToFirst('home');
     });
     
     aboutRadio.addEventListener('change', () => {
-        // Reset cards to first card when switching tabs
         resetCardsToFirst('about');
+    });
+    
+    skillsRadio.addEventListener('change', () => {
+        resetCardsToFirst('skills');
     });
     
     // Function to reset cards to first card
@@ -307,4 +411,26 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Debug - log to console
     console.log("Enhanced script loaded with fixed card flip animations and consistent arrow styles");
+});
+
+// Update arrow click handler
+arrows.forEach(arrow => {
+    arrow.addEventListener('click', (e) => {
+        e.stopPropagation();
+        
+        const targetSection = arrow.getAttribute('data-card-target');
+        
+        // Update radio button selection based on section
+        if (targetSection === 'projects') {
+            projectsRadio.checked = true;
+        } else if (targetSection === 'home') {
+            homeRadio.checked = true;
+        } else if (targetSection === 'about') {
+            aboutRadio.checked = true;
+        } else if (targetSection === 'skills') {
+            skillsRadio.checked = true;
+        }
+        
+        // Rest of click handler...
+    });
 });

@@ -11,9 +11,46 @@
     <!-- Radio buttons moved outside container for proper selector targeting -->
     <input type="radio" id="radio-1" name="tabs" checked="">
     <input type="radio" id="radio-2" name="tabs">
+    <input type="radio" id="radio-3" name="tabs">
+    <input type="radio" id="radio-4" name="tabs">
     
     <div class="container">
         <div class="content-wrapper">
+            <!-- Projects Content -->
+            <div id="projects-content" class="page-content">
+                <div class="card-slider">
+                    <div class="card card-active fancy-card">
+                        <div class="card-container">
+                            <div class="expandable-card">
+                                <div class="card-content">
+                                    <p class="title">Game Development</p>
+                                    <p class="description">
+                                        A toolkit for game development including:
+                                        <br>• Asset management
+                                        <br>• Physics engine
+                                        <br>• UI components
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="expandable-card">
+                                <div class="card-content">
+                                    <p class="title">Web Projects</p>
+                                    <p class="description">
+                                        Current web development projects:
+                                        <br>• This portfolio site
+                                        <br>• Productivity tools
+                                        <br>• Web applications
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="arrow-right" data-card-target="home" data-card-index="0">
+                            <i class="fas fa-chevron-right"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!-- Home Cards Content -->
             <div id="home-content" class="page-content">
                 <!-- Home Card Slider Container -->
@@ -143,14 +180,53 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Skills Content -->
+            <div id="skills-content" class="page-content">
+                <div class="card-slider">
+                    <div class="card card-active fancy-card">
+                        <div class="card-container">
+                            <div class="expandable-card">
+                                <div class="card-content">
+                                    <p class="title">Programming</p>
+                                    <p>Lua • Web Dev</p>
+                                    <p class="description">
+                                        Experience with:
+                                        <br>• Game Development
+                                        <br>• Frontend Development
+                                        <br>• Automation Scripts
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="expandable-card">
+                                <div class="card-content">
+                                    <p class="title">Tools & Skills</p>
+                                    <p>VS Code • Git</p>
+                                    <p class="description">
+                                        Proficient in:
+                                        <br>• Version Control
+                                        <br>• Project Management
+                                        <br>• Problem Solving
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="arrow-left" data-card-target="about" data-card-index="0">
+                            <i class="fas fa-chevron-left"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
     <!-- Bottom Navigation Menu (Tabs) -->
     <div id="navigation">
         <div class="tabs">
+            <label class="tab" for="radio-3">Projects</label>
             <label class="tab" for="radio-1">Home</label>
             <label class="tab" for="radio-2">About</label>
+            <label class="tab" for="radio-4">Skills</label>
             <span class="glider"></span>
         </div>
     </div>

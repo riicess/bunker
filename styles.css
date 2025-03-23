@@ -33,29 +33,39 @@ body, html {
     }
 }
 
-/* Content wrapper */
+/* Content wrapper - Fix width and transitions */
 .content-wrapper {
     position: relative;
-    width: 200%;
+    width: 400%;
     height: 100%;
     display: flex;
     transition: transform 0.5s ease;
+    transform: translateX(-25%); /* Start at home position */
 }
 
 /* Page content containers */
 .page-content {
-    width: 50%;
+    width: 25%;
     height: 100%;
     position: relative;
     transition: 0.5s ease;
+    overflow: hidden;
 }
 
 input[id="radio-1"]:checked ~ .container .content-wrapper {
-    transform: translateX(0);
+    transform: translateX(-25%); /* Home */
 }
 
 input[id="radio-2"]:checked ~ .container .content-wrapper {
-    transform: translateX(-50%);
+    transform: translateX(-50%); /* About */
+}
+
+input[id="radio-3"]:checked ~ .container .content-wrapper {
+    transform: translateX(0); /* Projects */
+}
+
+input[id="radio-4"]:checked ~ .container .content-wrapper {
+    transform: translateX(-75%); /* Skills */
 }
 
 /* Card slider */
@@ -242,7 +252,9 @@ input[id="radio-2"]:checked ~ .container .content-wrapper {
     box-shadow: 0 0 20px rgba(0, 255, 204, 0.5);
     padding: 10px;
     border-radius: 99px;
-    width: 220px;
+    width: 440px;
+    border: 1px solid rgba(0, 255, 204, 0.3);
+    justify-content: space-around;
 }
 
 input[type="radio"] {
@@ -254,15 +266,16 @@ input[type="radio"] {
     align-items: center;
     justify-content: center;
     height: 40px;
-    width: 110px;
+    width: 100px;
     font-size: 16px;
     color: #f0f0f0;
     font-weight: 500;
     border-radius: 99px;
     cursor: pointer;
     transition: color 0.15s ease-in;
-    z-index: 10;
-    -webkit-tap-highlight-color: transparent; /* Remove tap highlight on mobile */
+    z-index: 2; /* Above glider */
+    position: relative; /* Ensure text stays above glider */
+    margin: 0;
 }
 
 input[type="radio"]:checked + label {
@@ -270,33 +283,41 @@ input[type="radio"]:checked + label {
 }
 
 input[id="radio-1"]:checked ~ #navigation .glider {
-    transform: translateX(0);
+    transform: translateX(115px); /* Home */
 }
 
 input[id="radio-2"]:checked ~ #navigation .glider {
-    transform: translateX(110px);
+    transform: translateX(225px); /* About */
+}
+
+input[id="radio-3"]:checked ~ #navigation .glider {
+    transform: translateX(5px); /* Projects */
+}
+
+input[id="radio-4"]:checked ~ #navigation .glider {
+    transform: translateX(335px); /* Skills */
 }
 
 .glider {
     position: absolute;
-    display: flex;
     height: 40px;
-    width: 110px;
+    width: 100px;
     background-color: #333333;
-    z-index: 1;
     border-radius: 99px;
-    transition: 0.25s ease-out;
+    transition: transform 0.25s ease-out;
     border: 1px solid #00ffcc;
+    left: 10px;
+    z-index: 1; /* Below tab text */
 }
 
 /* Fancy card styles - dark theme */
 .fancy-card {
-    padding: 2em 1.2em;
-    background: #222;  /* Dark background */
-    transition: all 0.5s ease;
+    padding: 1.5em 1em;
+    background: rgba(34, 34, 34, 0.8);
     position: relative;
     overflow: visible;
     transform-style: preserve-3d;
+    height: 300px; /* Reduced height */
 }
 
 /* Card flip mechanism - Fix for hover functionality */
@@ -423,6 +444,35 @@ input[id="radio-2"]:checked ~ #navigation .glider {
         min-width: 36px;
         min-height: 36px;
     }
+    
+    .tabs {
+        width: 360px;
+    }
+    
+    .tab {
+        width: 80px;
+        font-size: 14px;
+    }
+    
+    input[id="radio-1"]:checked ~ #navigation .glider {
+        transform: translateX(95px);
+    }
+    
+    input[id="radio-2"]:checked ~ #navigation .glider {
+        transform: translateX(185px);
+    }
+    
+    input[id="radio-3"]:checked ~ #navigation .glider {
+        transform: translateX(5px);
+    }
+    
+    input[id="radio-4"]:checked ~ #navigation .glider {
+        transform: translateX(275px);
+    }
+    
+    .glider {
+        width: 80px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -462,10 +512,10 @@ input[id="radio-2"]:checked ~ #navigation .glider {
 
 /* Replace Flip Card Styles with new Card Hover Styles */
 .expandable-card {
-    width: 190px;
-    height: 254px;
+    width: 200px; /* Slightly smaller base width */
+    height: 220px; /* Smaller initial height */
     margin: 0 15px;
-    padding: 20px;
+    padding: 15px;
     background: #333;
     border-radius: 1rem;
     border: 1px solid #00ffcc;
@@ -475,8 +525,11 @@ input[id="radio-2"]:checked ~ #navigation .glider {
 }
 
 .expandable-card:hover {
-    transform: scale(1.05);
+    transform: scale(1.15); /* Larger scale on hover */
+    width: 240px; /* Wider on hover */
+    height: 280px; /* Taller on hover */
     box-shadow: 0 0 30px rgba(0, 255, 204, 0.3);
+    z-index: 3; /* Ensure it stays on top */
 }
 
 .expandable-card .card-content {
@@ -496,12 +549,73 @@ input[id="radio-2"]:checked ~ #navigation .glider {
 .expandable-card .description {
     color: #f0f0f0;
     font-size: 1em;
-    opacity: 0.9;
+    opacity: 0;
     max-height: 0;
+    margin-top: 0;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     overflow: hidden;
-    transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .expandable-card:hover .description {
+    opacity: 1;
     max-height: 200px;
+    margin-top: 15px;
+}
+
+/* Card entrance animations */
+.card-enter-from-left {
+    animation: slideFromLeft 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-enter-from-right {
+    animation: slideFromRight 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes slideFromLeft {
+    from {
+        transform: translate(-100%, -50%);
+        opacity: 0;
+    }
+    to {
+        transform: translate(-50%, -50%);
+        opacity: 1;
+    }
+}
+
+@keyframes slideFromRight {
+    from {
+        transform: translate(100%, -50%);
+        opacity: 0;
+    }
+    to {
+        transform: translate(-50%, -50%);
+        opacity: 1;
+    }
+}
+
+/* Projects and Skills specific styles */
+#projects-content .card-container,
+#skills-content .card-container {
+    justify-content: center;
+    align-items: center;
+    height: calc(100% - 40px); /* Reduced padding */
+    padding: 20px;
+    gap: 20px;
+}
+
+#projects-content .fancy-card,
+#skills-content .fancy-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+}
+
+#projects-content .expandable-card,
+#skills-content .expandable-card {
+    height: 200px;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
