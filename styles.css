@@ -715,16 +715,16 @@ input[id="radio-4"]:checked ~ #navigation .glider {
 .skill-icons {
     display: flex;
     justify-content: center;
-    gap: 40px;
+    gap: 30px;  /* Reduced gap */
     margin-top: 30px;
 }
 
 .skill-icon {
-    width: 80px;
-    height: 80px;
-    border-radius: 15px;
+    width: 50px;  /* Reduced from 60px */
+    height: 50px;  /* Reduced from 60px */
+    border-radius: 8px;
+    padding: 6px;
     background: #333;
-    padding: 10px;
     cursor: pointer;
     transition: all 0.3s ease;
     position: relative;
@@ -734,8 +734,8 @@ input[id="radio-4"]:checked ~ #navigation .glider {
 }
 
 .skill-icon img {
-    width: 60px;
-    height: 60px;
+    width: 30px;  /* Reduced from 40px */
+    height: 30px;  /* Reduced from 40px */
     object-fit: contain;
 }
 
