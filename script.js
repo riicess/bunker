@@ -85,6 +85,29 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
     
+    // Fix for arrow navigation
+    arrows.forEach(arrow => {
+        arrow.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const targetSection = arrow.getAttribute('data-card-target');
+            const targetIndex = parseInt(arrow.getAttribute('data-card-index'));
+            const sectionCards = document.querySelectorAll(`#${targetSection}-content .card`);
+            sectionCards.forEach(card => card.classList.remove('card-active'));
+            sectionCards[targetIndex].classList.add('card-active');
+            applyArrowStyles();
+        });
+    });
+
+    // Fix for hover-related issues
+    document.querySelectorAll('.flip-card').forEach(card => {
+        card.addEventListener('mouseenter', () => {
+            card.querySelector('.flip-card-inner').style.transform = 'rotateY(180deg)';
+        });
+        card.addEventListener('mouseleave', () => {
+            card.querySelector('.flip-card-inner').style.transform = 'rotateY(0deg)';
+        });
+    });
+
     // Function to apply consistent styling to all arrows
     function applyArrowStyles() {
         // Select all arrows
