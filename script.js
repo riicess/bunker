@@ -22,10 +22,14 @@ document.addEventListener('DOMContentLoaded', () => {
             const targetIndex = parseInt(arrow.getAttribute('data-card-index'));
             
             // Handle section switching
-            if (targetSection === 'home' && arrow.classList.contains('arrow-right')) {
-                projectsRadio.checked = true;
-            } else if (targetSection === 'about' && arrow.classList.contains('arrow-right')) {
-                skillsRadio.checked = true;
+            if ((targetSection === 'home' && arrow.classList.contains('arrow-right')) || 
+                (targetSection === 'home' && targetIndex === 3)) {
+                window.location.href = '/projects';
+                return;
+            } else if ((targetSection === 'about' && arrow.classList.contains('arrow-right')) || 
+                       (targetSection === 'about' && targetIndex === 2)) {
+                window.location.href = '/skills';
+                return;
             }
 
             // Get all cards in the section
@@ -82,6 +86,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Reapply arrow styles after card change
                 applyArrowStyles();
             }, 300);
+
+            // Update arrow visibility based on section
+            if (targetSection === 'about') {
+                document.querySelector(`#${targetSection}-content .arrow-right`).style.display = 'none';
+            } else if (targetSection === 'skills') {
+                document.querySelector(`#${targetSection}-content .arrow-left`).style.display = 'none';
+            }
         });
     });
     

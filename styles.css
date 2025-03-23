@@ -455,32 +455,52 @@ input[id="radio-4"]:checked ~ #navigation .glider {
     }
     
     .tabs {
-        width: 360px;
+        width: 300px; /* Reduced from 360px */
+        padding: 8px; /* Reduced padding */
     }
     
     .tab {
-        width: 80px;
-        font-size: 14px;
-    }
-    
-    input[id="radio-1"]:checked ~ #navigation .glider {
-        transform: translateX(95px);
-    }
-    
-    input[id="radio-2"]:checked ~ #navigation .glider {
-        transform: translateX(185px);
-    }
-    
-    input[id="radio-3"]:checked ~ #navigation .glider {
-        transform: translateX(5px);
-    }
-    
-    input[id="radio-4"]:checked ~ #navigation .glider {
-        transform: translateX(275px);
+        width: 70px; /* Smaller tabs */
+        font-size: 12px; /* Smaller font */
+        height: 35px; /* Reduced height */
     }
     
     .glider {
-        width: 80px;
+        width: 70px; /* Match tab width */
+        height: 35px; /* Match tab height */
+    }
+
+    /* Update glider positions */
+    input[id="radio-1"]:checked ~ #navigation .glider {
+        transform: translateX(78px); /* Adjusted position */
+    }
+    
+    input[id="radio-2"]:checked ~ #navigation .glider {
+        transform: translateX(156px); /* Adjusted position */
+    }
+    
+    input[id="radio-3"]:checked ~ #navigation .glider {
+        transform: translateX(0); /* Adjusted position */
+    }
+    
+    input[id="radio-4"]:checked ~ #navigation .glider {
+        transform: translateX(234px); /* Adjusted position */
+    }
+
+    /* Fix tools page layout */
+    .content {
+        padding: 20px;
+        padding-bottom: 80px; /* Add space for back button */
+        min-height: calc(100vh - 100px);
+        position: relative;
+    }
+
+    .back-button {
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 100;
     }
 }
 
@@ -488,6 +508,36 @@ input[id="radio-4"]:checked ~ #navigation .glider {
     .card {
         width: 260px;
         height: 180px;
+    }
+    
+    .tabs {
+        width: 280px; /* Even smaller on phones */
+    }
+    
+    .tab {
+        width: 65px; /* Smaller tabs */
+        font-size: 11px; /* Smaller font */
+    }
+    
+    .glider {
+        width: 65px; /* Match tab width */
+    }
+    
+    /* Update glider positions */
+    input[id="radio-1"]:checked ~ #navigation .glider {
+        transform: translateX(73px);
+    }
+    
+    input[id="radio-2"]:checked ~ #navigation .glider {
+        transform: translateX(146px);
+    }
+    
+    input[id="radio-3"]:checked ~ #navigation .glider {
+        transform: translateX(0);
+    }
+    
+    input[id="radio-4"]:checked ~ #navigation .glider {
+        transform: translateX(219px);
     }
     
     .tabs {
@@ -715,7 +765,7 @@ input[id="radio-4"]:checked ~ #navigation .glider {
 .skill-icons {
     display: flex;
     justify-content: center;
-    gap: 30px;  /* Reduced gap */
+    gap: 40px;  /* Increased gap */
     margin-top: 30px;
 }
 
@@ -723,7 +773,7 @@ input[id="radio-4"]:checked ~ #navigation .glider {
     width: 50px;  /* Reduced from 60px */
     height: 50px;  /* Reduced from 60px */
     border-radius: 8px;
-    padding: 6px;
+    padding: 10px; /* Increased padding to prevent hover jitter */
     background: #333;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -733,6 +783,7 @@ input[id="radio-4"]:checked ~ #navigation .glider {
     justify-content: center;
     flex-direction: column;
     touch-action: manipulation;
+    pointer-events: auto;
 }
 
 .skill-icon img {
@@ -812,7 +863,7 @@ input[id="radio-4"]:checked ~ #navigation .glider {
     white-space: nowrap;
     opacity: 0;
     visibility: hidden;
-    transition: all 0.3s ease;
+    transition: opacity 0.3s ease, visibility 0.3s ease, top 0.3s ease;
     pointer-events: none;
     z-index: 10;
 }
@@ -875,8 +926,8 @@ input[id="radio-4"]:checked ~ #navigation .glider {
     }
     
     .tools-grid {
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-        gap: 20px;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 25px; /* Increased gap */
     }
     
     /* Make touch targets larger on mobile */
@@ -894,7 +945,7 @@ input[id="radio-4"]:checked ~ #navigation .glider {
     
     .tools-grid {
         grid-template-columns: repeat(2, 1fr);
-        gap: 15px;
+        gap: 25px; /* Increased gap */
     }
 }
 
@@ -935,7 +986,36 @@ input[id="radio-4"]:checked ~ #navigation .glider {
 .projects-grid,
 .tools-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-    padding: 20px;
+    grid-template-columns: repeat(4, 1fr); /* Fixed 4 columns */
+    gap: 25px; /* Increased gap */
+    padding: 10px; /* Reduced from 20px */
+    max-width: 800px; /* Limit maximum width */
+    margin: 0 auto;
+}
+
+.tool-icon {
+    width: 70px; /* Slightly smaller */
+    height: 70px;
+    padding: 8px;
+    gap: 6px; /* Reduced gap between icon and label */
+}
+
+@media (max-width: 768px) {
+    .tools-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 25px; /* Increased gap */
+    }
+}
+
+@media (max-width: 480px) {
+    .tools-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px; /* Increased gap */
+    }
+}
+
+/* Hide certain arrows by default */
+#skills-content .arrow-left,
+#about-content .arrow-right {
+    display: none;
 }
