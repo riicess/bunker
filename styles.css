@@ -832,3 +832,45 @@ input[id="radio-4"]:checked ~ #navigation .glider {
     visibility: visible;
     top: -70px;
 }
+
+/* Page content styles */
+.content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    color: #f0f0f0;
+    text-align: center;
+}
+
+.content h1 {
+    color: #00ffcc;
+    margin-bottom: 40px;
+    font-size: 2.5em;
+}
+
+.back-button {
+    display: inline-block;
+    margin-top: 40px;
+    padding: 12px 24px;
+    background: #333;
+    color: #00ffcc;
+    text-decoration: none;
+    border-radius: 99px;
+    border: 1px solid #00ffcc;
+    transition: all 0.3s ease;
+}
+
+.back-button:hover {
+    background: #00ffcc;
+    color: #333;
+    box-shadow: 0 0 20px rgba(0, 255, 204, 0.5);
+}
+
+/* Grid layouts */
+.projects-grid,
+.tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    padding: 20px;
+}
