@@ -85,97 +85,36 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
     
-    // Update arrow click handler
-    arrows.forEach(arrow => {
-        arrow.addEventListener('click', (e) => {
-            e.stopPropagation();
-            
-            const targetSection = arrow.getAttribute('data-card-target');
-            const targetIndex = parseInt(arrow.getAttribute('data-card-index'));
-            
-            // Handle section switching with correct direction
-            if (arrow.classList.contains('arrow-right')) {
-                if (targetSection === 'home') {
-                    projectsRadio.checked = true;
-                } else if (targetSection === 'about') {
-                    skillsRadio.checked = true;
-                }
-            } else if (arrow.classList.contains('arrow-left')) {
-                if (targetSection === 'home') {
-                    projectsRadio.checked = true;
-                } else if (targetSection === 'about') {
-                    skillsRadio.checked = true;
-                }
+    // Remove duplicate arrow event listeners
+    const arrowClickHandler = (e) => {
+        e.stopPropagation();
+        const arrow = e.currentTarget;
+        const targetSection = arrow.getAttribute('data-card-target');
+        const targetIndex = parseInt(arrow.getAttribute('data-card-index'));
+        
+        const sectionCards = document.querySelectorAll(`#${targetSection}-content .card`);
+        
+        // Single animation sequence
+        sectionCards.forEach(card => {
+            if (card.classList.contains('card-active')) {
+                card.classList.add('card-exit');
+                card.classList.remove('card-active');
             }
-            
-            // Get all cards in the section
-            const sectionCards = document.querySelectorAll(`#${targetSection}-content .card`);
-            
-            // Add exit animation to current active card
-            sectionCards.forEach(card => {
-                if (card.classList.contains('card-active')) {
-                    card.classList.add('card-exit');
-                    
-                    // Remove the exit and active classes after animation completes
-                    setTimeout(() => {
-                        card.classList.remove('card-active');
-                        card.classList.remove('card-exit');
-                    }, 300);
-                }
-            });
-            
-            // Direction-specific animations for the target card
-            let entranceClass = '';
-            if (arrow.classList.contains('arrow-left')) {
-                entranceClass = 'card-enter-from-right';
-            } else if (arrow.classList.contains('arrow-right')) {
-                entranceClass = 'card-enter-from-left';
-            } else {
-                entranceClass = 'card-enter-from-bottom';
-            }
-            
-            // Add entrance animation to target card after a slight delay
-            setTimeout(() => {
-                // Add entrance class based on arrow direction
-                sectionCards[targetIndex].classList.add(entranceClass);
-                
-                // Add active class to target card
-                sectionCards[targetIndex].classList.add('card-active');
-                
-                // Remove entrance class after animation completes
-                setTimeout(() => {
-                    sectionCards[targetIndex].classList.remove(entranceClass);
-                }, 300);
-                
-                // Update arrow direction based on which card is active
-                updateArrows(targetSection, targetIndex);
-                
-                // Show delayed arrows if needed
-                showDelayedArrow(targetSection, targetIndex);
-
-                // Reset any flipped cards
-                const cardInners = document.querySelectorAll('.card-inner');
-                cardInners.forEach(inner => {
-                    inner.style.transform = 'rotateY(0deg)';
-                });
-
-                // Reapply arrow styles after card change
-                applyArrowStyles();
-            }, 300);
         });
-    });
 
-    // Fix for arrow navigation
-    arrows.forEach(arrow => {
-        arrow.addEventListener('click', (e) => {
-            e.stopPropagation();
-            const targetSection = arrow.getAttribute('data-card-target');
-            const targetIndex = parseInt(arrow.getAttribute('data-card-index'));
-            const sectionCards = document.querySelectorAll(`#${targetSection}-content .card`);
-            sectionCards.forEach(card => card.classList.remove('card-active'));
+        setTimeout(() => {
+            sectionCards.forEach(card => card.classList.remove('card-exit'));
             sectionCards[targetIndex].classList.add('card-active');
-            applyArrowStyles();
-        });
+        }, 300);
+
+        updateArrows(targetSection, targetIndex);
+    };
+
+    // Clean up and reattach arrow event listeners
+    arrows.forEach(arrow => {
+        const newArrow = arrow.cloneNode(true);
+        arrow.parentNode.replaceChild(newArrow, arrow);
+        newArrow.addEventListener('click', arrowClickHandler, { once: false });
     });
 
     // Fix for hover-related issues - Update to handle expand animation
@@ -213,13 +152,40 @@ document.addEventListener('DOMContentLoaded', () => {
         card.addEventListener('click', () => {
             const title = card.querySelector('.title').textContent;
             const parentCard = card.closest('.fancy-card');
-            const cardIndex = Array.from(parentCard.querySelectorAll('.expandable-card')).indexOf(card);
+            
+            // Get correct content based on card title
+            let content = '';
+            if (title === 'Programming Languages') {
+                content = `
+                    <div class="skill-icons">
+                        <div class="skill-icon">
+                            <img src="icons/html.png" alt="HTML">
+                            <div class="skill-tooltip">HTML: Building web structure</div>
+                        </div>
+                        <div class="skill-icon">
+                            <img src="icons/css.png" alt="CSS">
+                            <div class="skill-tooltip">CSS: Styling and animations</div>
+                        </div>
+                        <div class="skill-icon">
+                            <img src="icons/js.png" alt="JavaScript">
+                            <div class="skill-tooltip">JavaScript: Interactive features</div>
+                        </div>
+                    </div>
+                `;
+            } else if (title === 'Tools') {
+                content = `<p style="color: #f0f0f0; margin-top: 20px;">Development tools I use</p>`;
+            } else if (title === 'Web Projects') {
+                content = `<p style="color: #f0f0f0; margin-top: 20px;">My web development projects</p>`;
+            } else if (title === 'All Projects') {
+                content = `<p style="color: #f0f0f0; margin-top: 20px;">All my programming projects</p>`;
+            }
             
             const overlay = document.createElement('div');
             overlay.className = 'card-overlay';
             overlay.innerHTML = `
                 <div class="overlay-content">
                     <h2 style="color: #00ffcc; font-size: 24px;">${title}</h2>
+                    ${content}
                     <div class="close-overlay">
                         <i class="fas fa-times"></i>
                     </div>
@@ -231,7 +197,9 @@ document.addEventListener('DOMContentLoaded', () => {
             
             overlay.querySelector('.close-overlay').addEventListener('click', () => {
                 overlay.classList.remove('active');
-                setTimeout(() => overlay.remove(), 300);
+                setTimeout(() => {
+                    overlay.remove();
+                }, 300);
             });
         });
     });
@@ -434,26 +402,4 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Debug - log to console
     console.log("Enhanced script loaded with fixed card flip animations and consistent arrow styles");
-});
-
-// Update arrow click handler
-arrows.forEach(arrow => {
-    arrow.addEventListener('click', (e) => {
-        e.stopPropagation();
-        
-        const targetSection = arrow.getAttribute('data-card-target');
-        
-        // Update radio button selection based on section
-        if (targetSection === 'projects') {
-            projectsRadio.checked = true;
-        } else if (targetSection === 'home') {
-            homeRadio.checked = true;
-        } else if (targetSection === 'about') {
-            aboutRadio.checked = true;
-        } else if (targetSection === 'skills') {
-            skillsRadio.checked = true;
-        }
-        
-        // Rest of click handler...
-    });
 });
