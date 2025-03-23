@@ -50,21 +50,31 @@
                     
                     <!-- Home Card 4 (Projects - now a fancy card) -->
                     <div class="card fancy-card">
-                        <div class="card-content">
-                            <p class="card-title">My Projects</p>
-                            <p class="small-desc">(Coming soon)</p>
-                            <div class="detail-text">
-                                I'm currently working on several exciting projects including:
-                                <br><br>• A game development toolkit
-                                <br>• A personal portfolio website 
-                                <br>• A productivity application
-                                <br><br>Check back soon for more details and live demos!
+                        <div class="card-inner">
+                            <div class="card-front">
+                                <div class="card-content">
+                                    <p class="card-title">My Projects</p>
+                                    <p class="small-desc">(Coming soon)</p>
+                                    <p style="color: #aaa; margin-top: 20px;">Hover to see details</p>
+                                    <div class="arrow-right" style="margin-top: auto;" data-card-target="home" data-card-index="0">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="go-corner">
-                                <div class="go-arrow">→</div>
-                            </div>
-                            <div class="arrow-right" style="margin-top: auto;" data-card-target="home" data-card-index="0">
-                                <i class="fas fa-chevron-right"></i>
+                            <div class="card-back">
+                                <div class="back-content">
+                                    <p class="card-title">Project Details</p>
+                                    <div class="detail-text">
+                                        I'm currently working on several exciting projects including:
+                                        <br><br>• A game development toolkit
+                                        <br>• A personal portfolio website 
+                                        <br>• A productivity application
+                                        <br><br>Check back soon for more details and live demos!
+                                    </div>
+                                    <div class="arrow-right" style="margin-top: 20px;" data-card-target="home" data-card-index="0">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -105,22 +115,51 @@
                         </div>
                     </div>
                     
-                    <!-- About Card 4 (Lua Card - Fancy Style) -->
-                    <div class="card fancy-card detail-card">
-                        <div class="card-content">
-                            <p class="card-title">Lua Programming</p>
-                            <p class="small-desc">1+ years</p>
-                            <div class="detail-text">
-                                I've been working with Lua for over a year now, primarily focusing on game development
-                                and automation scripts. My experience includes creating custom game mechanics, 
-                                building UI systems, and optimizing performance for various projects.
+                    <!-- About Card 4 (Skills Card with Side-by-Side Layout) -->
+                    <div class="card fancy-card">
+                        <div class="card-container">
+                            <!-- Lua Card -->
+                            <div class="side-card">
+                                <div class="card-inner">
+                                    <div class="card-front">
+                                        <p class="card-title">Lua Programming</p>
+                                        <p class="small-desc">1+ years</p>
+                                        <p style="color: #aaa; margin-top: 10px;">Hover to see details</p>
+                                    </div>
+                                    <div class="card-back">
+                                        <div class="back-content">
+                                            <p class="card-title">Lua Experience</p>
+                                            <div class="detail-text">
+                                                I've been working with Lua for over a year now, primarily focusing on game development
+                                                and automation scripts. My experience includes creating custom game mechanics, 
+                                                building UI systems, and optimizing performance for various projects.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="go-corner">
-                                <div class="go-arrow">→</div>
+                            
+                            <!-- Web Development Card -->
+                            <div class="side-card">
+                                <div class="card-inner">
+                                    <div class="card-front">
+                                        <p class="card-title">Web Development</p>
+                                        <p class="small-desc">3+ months</p>
+                                        <p style="color: #aaa; margin-top: 10px;">Hover to see details</p>
+                                    </div>
+                                    <div class="card-back">
+                                        <div class="back-content">
+                                            <p class="card-title">Web Development Journey</p>
+                                            <div class="detail-text">
+                                                I started learning web development 3 months ago so I could make this page. I've learned HTML and CSS, and I'm continuing to expand my skills. This website is one of my first projects, and I'm excited to keep improving my web development abilities and create more interactive websites in the future.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="arrow-left" style="margin-top: auto;" data-card-target="about" data-card-index="0">
-                                <i class="fas fa-chevron-left"></i>
-                            </div>
+                        </div>
+                        <div class="arrow-left" style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%);" data-card-target="about" data-card-index="0">
+                            <i class="fas fa-chevron-left"></i>
                         </div>
                     </div>
                 </div>

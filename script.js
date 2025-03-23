@@ -8,7 +8,10 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Add click event to all arrows
     arrows.forEach(arrow => {
-        arrow.addEventListener('click', () => {
+        arrow.addEventListener('click', (e) => {
+            // Stop propagation to prevent card flipping when arrow is clicked
+            e.stopPropagation();
+            
             // Get target section and index from data attributes
             const targetSection = arrow.getAttribute('data-card-target');
             const targetIndex = parseInt(arrow.getAttribute('data-card-index'));
@@ -66,6 +69,12 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                     }, 500);
                 }
+
+                // Reset any flipped cards
+                const cardInners = document.querySelectorAll('.card-inner');
+                cardInners.forEach(inner => {
+                    inner.style.transform = 'rotateY(0deg)';
+                });
             }, 300);
         });
     });
@@ -145,8 +154,11 @@ document.addEventListener('DOMContentLoaded', () => {
         // Update arrows
         updateArrows(section, 0);
         
-        // Reset any expanded detail cards
-        resetDetailCards();
+        // Reset any flipped cards
+        const cardInners = document.querySelectorAll('.card-inner');
+        cardInners.forEach(inner => {
+            inner.style.transform = 'rotateY(0deg)';
+        });
         
         // Reset any delayed arrows
         const delayedArrows = document.querySelectorAll('.delayed-arrow');
@@ -156,45 +168,14 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     
-    // Function to reset detail cards to collapsed state
-    function resetDetailCards() {
-        const detailTexts = document.querySelectorAll('.detail-text');
-        detailTexts.forEach(text => {
-            text.style.maxHeight = null;
-            text.style.opacity = '0';
+    // Prevent arrow click events from triggering card flips
+    const cardInnerArrows = document.querySelectorAll('.card-inner .arrow-down, .card-inner .arrow-left, .card-inner .arrow-right');
+    cardInnerArrows.forEach(arrow => {
+        arrow.addEventListener('click', (e) => {
+            e.stopPropagation();
         });
-    }
-    
-    // Initialize detail cards functionality
-    initializeDetailCards();
-    
-    function initializeDetailCards() {
-        const detailCards = document.querySelectorAll('.detail-card');
-        
-        detailCards.forEach(card => {
-            card.addEventListener('click', (e) => {
-                // Prevent triggering parent card navigation
-                e.stopPropagation();
-                
-                // Don't toggle if the arrow was clicked
-                if (e.target.closest('.arrow-left, .arrow-right, .arrow-down, .arrow-up')) {
-                    return;
-                }
-                
-                const detailText = card.querySelector('.detail-text');
-                if (detailText) {
-                    if (detailText.style.maxHeight) {
-                        detailText.style.maxHeight = null;
-                        detailText.style.opacity = '0';
-                    } else {
-                        detailText.style.maxHeight = detailText.scrollHeight + 'px';
-                        detailText.style.opacity = '1';
-                    }
-                }
-            });
-        });
-    }
+    });
     
     // Debug - log to console
-    console.log("Enhanced script loaded with improved card animations and arrow directions");
+    console.log("Enhanced script loaded with card flip animations and old arrow styles");
 });

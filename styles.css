@@ -133,7 +133,7 @@ input[id="radio-2"]:checked ~ .container .content-wrapper {
     height: 100%;
 }
 
-/* Arrow styles */
+/* Arrow styles - old style with borders */
 .arrow-down, .arrow-left, .arrow-right, .arrow-up {
     width: 40px;
     height: 40px;
@@ -145,12 +145,13 @@ input[id="radio-2"]:checked ~ .container .content-wrapper {
     margin-top: 20px;
     cursor: pointer;
     transition: all 0.3s ease;
-    border: 1px solid transparent;
+    border: 2px solid #00ffcc;  /* Added border */
+    box-shadow: 0 0 10px rgba(0, 255, 204, 0.3);  /* Added glow */
     -webkit-tap-highlight-color: transparent; /* Remove tap highlight on mobile */
 }
 
 .arrow-down i, .arrow-left i, .arrow-right i, .arrow-up i {
-    color: #f0f0f0;
+    color: #00ffcc;  /* Changed color */
     font-size: 18px;
     transition: all 0.3s ease;
 }
@@ -163,7 +164,7 @@ input[id="radio-2"]:checked ~ .container .content-wrapper {
 }
 
 .arrow-down:hover i, .arrow-left:hover i, .arrow-right:hover i, .arrow-up:hover i {
-    color: #00ffcc;
+    color: #ffffff;  /* Changed hover color */
 }
 
 .arrow-up i {
@@ -242,47 +243,59 @@ input[id="radio-2"]:checked ~ #navigation .glider {
     border: 1px solid #00ffcc;
 }
 
-/* Fancy card styles */
+/* Fancy card styles - dark theme */
 .fancy-card {
     padding: 2em 1.2em;
-    background: linear-gradient(to bottom, #c3e6ec, #a7d1d9);
+    background: #222;  /* Dark background */
     transition: all 0.5s ease;
     position: relative;
-    overflow: hidden;
-    cursor: pointer;
+    overflow: visible;
+    transform-style: preserve-3d;
+    perspective: 1000px;
 }
 
-.fancy-card:before {
-    content: '';
+/* Card flip mechanism */
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+
+.fancy-card:hover .card-inner {
+    transform: rotateY(180deg);
+}
+
+.card-front, .card-back {
     position: absolute;
-    z-index: -1;
-    top: -16px;
-    right: -16px;
-    background: linear-gradient(135deg, #364a60, #384c6c);
-    height: 32px;
-    width: 32px;
-    border-radius: 32px;
-    transform: scale(1);
-    transform-origin: 50% 50%;
-    transition: transform 0.35s ease-out;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
-.fancy-card:hover:before {
-    transform: scale(28);
+.card-front {
+    background: #222;
+    color: #f0f0f0;
 }
 
-.fancy-card:hover .small-desc {
-    transition: all 0.5s ease-out;
-    color: rgba(255, 255, 255, 0.8);
-}
-
-.fancy-card:hover .card-title {
-    transition: all 0.5s ease-out;
-    color: #ffffff;
+.card-back {
+    background: #333;
+    color: #f0f0f0;
+    transform: rotateY(180deg);
+    padding: 20px;
+    border-radius: 20px;
+    overflow-y: auto;
+    max-height: 100%;
 }
 
 .card-title {
-    color: #262626;
+    color: #00ffcc;  /* Updated for dark theme */
     font-size: 1.5em;
     line-height: normal;
     font-weight: 700;
@@ -294,44 +307,16 @@ input[id="radio-2"]:checked ~ #navigation .glider {
     font-size: 1em;
     font-weight: 400;
     line-height: 1.5em;
-    color: #452c2c;
+    color: #ccc;  /* Updated for dark theme */
     transition: all 0.3s ease;
 }
 
-.go-corner {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    width: 2em;
-    height: 2em;
-    overflow: hidden;
-    top: 0;
-    right: 0;
-    background: linear-gradient(135deg, #6293c8, #384c6c);
-    border-radius: 0 4px 0 32px;
-}
-
-.go-arrow {
-    margin-top: -4px;
-    margin-right: -4px;
-    color: white;
-    font-family: courier, sans;
-}
-
-/* Detail text expansion */
 .detail-text {
-    max-height: 0;
-    overflow: hidden;
-    opacity: 0;
-    transition: max-height 0.5s ease, opacity 0.5s ease;
     font-size: 14px;
-    color: #333;
+    color: #ddd;  /* Updated for dark theme */
     margin-top: 10px;
-}
-
-.detail-card {
-    cursor: pointer;
+    line-height: 1.5;
+    text-align: left;
 }
 
 /* Responsive design with improved performance for mobile */
@@ -402,4 +387,24 @@ input[id="radio-2"]:checked ~ #navigation .glider {
     .arrow-down i, .arrow-left i, .arrow-right i, .arrow-up i {
         font-size: 16px;
     }
+}
+
+/* For the sideways layout */
+.card-container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: space-between;
+}
+
+.side-card {
+    width: 48%;
+    height: 90%;
+    margin: 0 1%;
+}
+
+/* Fixed height for the backside content */
+.back-content {
+    height: 100%;
+    overflow-y: auto;
 }
