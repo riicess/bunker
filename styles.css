@@ -242,9 +242,9 @@ input[id="radio-4"]:checked ~ .container .content-wrapper {
 /* Navigation tabs */
 #navigation {
     position: fixed;
-    bottom: 40px;
+    bottom: 20px;
     left: 0;
-    width: 100%;
+    right: 0;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -256,9 +256,9 @@ input[id="radio-4"]:checked ~ .container .content-wrapper {
     position: relative;
     background-color: #242424;
     box-shadow: 0 0 20px rgba(0, 255, 204, 0.5);
-    padding: 10px;
+    padding: 5px;
     border-radius: 99px;
-    width: 440px;
+    width: 280px;
     border: 1px solid rgba(0, 255, 204, 0.3);
     justify-content: space-around;
 }
@@ -271,9 +271,9 @@ input[type="radio"] {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 40px;
-    width: 100px;
-    font-size: 16px;
+    height: 28px;
+    width: 65px;
+    font-size: 11px;
     color: #f0f0f0;
     font-weight: 500;
     border-radius: 99px;
@@ -282,6 +282,7 @@ input[type="radio"] {
     z-index: 2; /* Above glider */
     position: relative; /* Ensure text stays above glider */
     margin: 0;
+    padding: 0 2px;
 }
 
 input[type="radio"]:checked + label {
@@ -289,30 +290,30 @@ input[type="radio"]:checked + label {
 }
 
 input[id="radio-1"]:checked ~ #navigation .glider {
-    transform: translateX(115px); /* Home */
+    transform: translateX(71px); /* Home */
 }
 
 input[id="radio-2"]:checked ~ #navigation .glider {
-    transform: translateX(225px); /* About */
+    transform: translateX(142px); /* About */
 }
 
 input[id="radio-3"]:checked ~ #navigation .glider {
-    transform: translateX(5px); /* Projects */
+    transform: translateX(0); /* Projects */
 }
 
 input[id="radio-4"]:checked ~ #navigation .glider {
-    transform: translateX(335px); /* Skills */
+    transform: translateX(213px); /* Skills */
 }
 
 .glider {
     position: absolute;
-    height: 40px;
-    width: 100px;
+    height: 28px;
+    width: 65px;
     background-color: #333333;
     border-radius: 99px;
     transition: transform 0.25s ease-out;
     border: 1px solid #00ffcc;
-    left: 10px;
+    left: 5px;
     z-index: 1; /* Below tab text */
 }
 
