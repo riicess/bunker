@@ -78,8 +78,8 @@ input[id="radio-4"]:checked ~ .container .content-wrapper {
 
 /* Card styles */
 .card {
-    width: 320px;
-    height: 220px;
+    width: 800px; /* Increased from 320px */
+    height: 300px; /* Increased from 220px */
     border-radius: 30px;
     background: rgba(33, 33, 33, 0.5);
     box-shadow: 15px 15px 30px rgba(25, 25, 25, 0.5),
@@ -312,12 +312,13 @@ input[id="radio-4"]:checked ~ #navigation .glider {
 
 /* Fancy card styles - dark theme */
 .fancy-card {
-    padding: 1em;
+    width: 800px; /* Match card width */
+    height: 300px; /* Match card height */
+    padding: 2em;
     background: rgba(34, 34, 34, 0.8);
     position: relative;
     overflow: visible;
     transform-style: preserve-3d;
-    height: 260px; /* Reduced height */
     border-radius: 30px;
 }
 
@@ -395,7 +396,7 @@ input[id="radio-4"]:checked ~ #navigation .glider {
     height: 100%;
     justify-content: center;
     align-items: center;
-    gap: 60px; /* More space between cards */
+    gap: 80px; /* Increased gap */
     padding: 20px;
     margin-bottom: 40px; /* Add space for arrow at bottom */
 }
@@ -514,15 +515,14 @@ input[id="radio-4"]:checked ~ #navigation .glider {
 
 /* Replace Flip Card Styles with new Card Hover Styles */
 .expandable-card {
-    width: 200px;
-    height: 180px;
-    margin: 0 15px;
-    padding: 15px;
+    width: 300px; /* Increased width */
+    height: 200px; /* Increased height */
+    margin: 0;
+    padding: 25px;
     background: #333;
     border-radius: 1rem;
     border: 1px solid #00ffcc;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    overflow: hidden;
     cursor: pointer;
     position: relative;
     z-index: 1;
@@ -539,12 +539,19 @@ input[id="radio-4"]:checked ~ #navigation .glider {
 
 .expandable-card .card-content {
     text-align: center;
+    width: 100%;
+    padding: 0 5px; /* Reduced padding */
+    box-sizing: border-box;
 }
 
 .expandable-card .title {
     color: #00ffcc;
-    font-size: 1.4em;
+    font-size: 1.3em;
     font-weight: bold;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    text-align: center;
 }
 
 /* Card entrance animations */
@@ -617,7 +624,7 @@ input[id="radio-4"]:checked ~ #navigation .glider {
 
 /* Update expandable card styles */
 .expandable-card {
-    width: 200px;
+    width: 240px; /* Increased width */
     height: 180px;
     margin: 0 15px;
     padding: 15px;
@@ -642,12 +649,19 @@ input[id="radio-4"]:checked ~ #navigation .glider {
 
 .expandable-card .card-content {
     text-align: center;
+    width: 100%;
+    padding: 0 5px; /* Reduced padding */
+    box-sizing: border-box;
 }
 
 .expandable-card .title {
     color: #00ffcc;
-    font-size: 1.4em;
+    font-size: 1.3em;
     font-weight: bold;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    text-align: center;
 }
 
 /* New fullscreen overlay styles */

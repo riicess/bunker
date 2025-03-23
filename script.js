@@ -71,16 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 updateArrows(targetSection, targetIndex);
                 
                 // Show delayed arrows if needed
-                if ((targetSection === 'home' && targetIndex === 2) || 
-                    (targetSection === 'about' && targetIndex === 2)) {
-                    setTimeout(() => {
-                        const delayedArrow = sectionCards[targetIndex].querySelector('.delayed-arrow');
-                        if (delayedArrow) {
-                            delayedArrow.style.opacity = '1';
-                            delayedArrow.style.transform = 'translateY(0)';
-                        }
-                    }, 500);
-                }
+                showDelayedArrow(targetSection, targetIndex);
 
                 // Reset any flipped cards
                 const cardInners = document.querySelectorAll('.card-inner');
@@ -160,16 +151,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 updateArrows(targetSection, targetIndex);
                 
                 // Show delayed arrows if needed
-                if ((targetSection === 'home' && targetIndex === 2) || 
-                    (targetSection === 'about' && targetIndex === 2)) {
-                    setTimeout(() => {
-                        const delayedArrow = sectionCards[targetIndex].querySelector('.delayed-arrow');
-                        if (delayedArrow) {
-                            delayedArrow.style.opacity = '1';
-                            delayedArrow.style.transform = 'translateY(0)';
-                        }
-                    }, 500);
-                }
+                showDelayedArrow(targetSection, targetIndex);
 
                 // Reset any flipped cards
                 const cardInners = document.querySelectorAll('.card-inner');
@@ -227,18 +209,17 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Add click handlers for expandable cards
-    document.querySelectorAll('.expandable-card').forEach(card => {
+    document.querySelectorAll('.expandable-card, .fancy-card').forEach(card => {
         card.addEventListener('click', () => {
             const title = card.querySelector('.title').textContent;
-            const description = card.querySelector('.description').textContent;
+            const subtitle = card.querySelector('p:not(.title)')?.textContent || '';
             
-            // Create and show overlay
             const overlay = document.createElement('div');
             overlay.className = 'card-overlay';
             overlay.innerHTML = `
                 <div class="overlay-content">
                     <h2 style="color: #00ffcc; font-size: 24px;">${title}</h2>
-                    <p style="color: #f0f0f0; margin-top: 20px;">${description}</p>
+                    <p style="color: #f0f0f0; margin-top: 20px;">${subtitle}</p>
                     <div class="skill-icons">
                         <div class="skill-icon">
                             <img src="icons/html.png" alt="HTML">
@@ -260,9 +241,8 @@ document.addEventListener('DOMContentLoaded', () => {
             `;
             
             document.body.appendChild(overlay);
-            setTimeout(() => overlay.classList.add('active'), 10);
+            requestAnimationFrame(() => overlay.classList.add('active'));
             
-            // Close overlay handler
             overlay.querySelector('.close-overlay').addEventListener('click', () => {
                 overlay.classList.remove('active');
                 setTimeout(() => overlay.remove(), 300);
@@ -381,6 +361,19 @@ document.addEventListener('DOMContentLoaded', () => {
         applyArrowStyles();
     }
     
+    // Function to show delayed arrow
+    function showDelayedArrow(targetSection, targetIndex) {
+        if ((targetSection === 'home' && targetIndex === 2) || 
+            (targetSection === 'about' && targetIndex === 2)) {
+            setTimeout(() => {
+                const delayedArrow = document.querySelector(`#${targetSection}-content .delayed-arrow`);
+                if (delayedArrow) {
+                    delayedArrow.classList.add('visible');
+                }
+            }, 500);
+        }
+    }
+
     // Handle tab switching
     projectsRadio.addEventListener('change', () => {
         resetCardsToFirst('projects');
