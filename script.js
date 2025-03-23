@@ -98,14 +98,23 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Fix for hover-related issues
+    // Fix for hover-related issues - Update to handle expand animation
     document.querySelectorAll('.flip-card').forEach(card => {
         card.addEventListener('mouseenter', () => {
-            card.querySelector('.flip-card-inner').style.transform = 'rotateY(180deg)';
+            // Remove any existing transitions
+            card.style.transition = 'all 0.3s ease';
+            card.classList.add('expanded');
         });
+        
         card.addEventListener('mouseleave', () => {
-            card.querySelector('.flip-card-inner').style.transform = 'rotateY(0deg)';
+            card.classList.remove('expanded');
         });
+    });
+
+    // Remove the old flip card event listeners
+    const oldFlipCards = document.querySelectorAll('.flip-card-inner');
+    oldFlipCards.forEach(card => {
+        card.style.transform = 'none';
     });
 
     // Function to apply consistent styling to all arrows
@@ -256,6 +265,12 @@ document.addEventListener('DOMContentLoaded', () => {
         delayedArrows.forEach(arrow => {
             arrow.style.opacity = '0';
             arrow.style.transform = 'translateY(20px)';
+        });
+        
+        // Reset any expanded cards
+        const flipCards = document.querySelectorAll('.flip-card');
+        flipCards.forEach(card => {
+            card.classList.remove('expanded');
         });
         
         // Reapply arrow styles

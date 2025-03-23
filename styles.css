@@ -373,7 +373,9 @@ input[id="radio-2"]:checked ~ #navigation .glider {
     display: flex;
     width: 100%;
     height: 100%;
-    justify-content: space-between;
+    justify-content: space-evenly; /* Changed from space-between */
+    align-items: center;
+    padding: 20px;
 }
 
 .side-card {
@@ -459,13 +461,22 @@ input[id="radio-2"]:checked ~ #navigation .glider {
     }
 }
 
-/* Flip Card Styles */
+/* Replace Flip Card Styles with new Card Hover Styles */
 .flip-card {
     background-color: transparent;
     width: 190px;
     height: 254px;
-    perspective: 1000px;
-    font-family: sans-serif;
+    margin: 0 15px; /* Add spacing between cards */
+    transition: transform 0.3s ease, height 0.3s ease;
+    overflow: hidden;
+    background: #333;
+    border-radius: 1rem;
+    border: 1px solid #00ffcc;
+}
+
+.flip-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 0 30px rgba(0, 255, 204, 0.3);
 }
 
 .flip-card-inner {
@@ -473,41 +484,51 @@ input[id="radio-2"]:checked ~ #navigation .glider {
     width: 100%;
     height: 100%;
     text-align: center;
-    transition: transform 0.8s;
-    transform-style: preserve-3d;
-}
-
-.flip-card:hover .flip-card-inner {
-    transform: rotateY(180deg);
+    transition: all 0.3s ease;
 }
 
 .flip-card-front, .flip-card-back {
-    box-shadow: 0 8px 14px 0 rgba(0, 0, 0, 0.2);
     position: absolute;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
     width: 100%;
-    height: 100%;
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-    border: 1px solid coral;
-    border-radius: 1rem;
+    padding: 20px;
+    background: #333;
+    color: #f0f0f0;
+    transition: all 0.3s ease;
 }
 
 .flip-card-front {
-    background: linear-gradient(120deg, bisque 60%, rgb(255, 231, 222) 88%, rgb(255, 211, 195) 40%, rgba(255, 127, 80, 0.603) 48%);
-    color: coral;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1rem;
+    background: linear-gradient(145deg, #2a2a2a, #333);
 }
 
 .flip-card-back {
-    background: linear-gradient(120deg, rgb(255, 174, 145) 30%, coral 88%, bisque 40%, rgb(255, 185, 160) 78%);
-    color: white;
-    transform: rotateY(180deg);
+    height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: all 0.3s ease;
 }
 
-/* Fix for Arrow Hover and Click */
-.arrow-down, .arrow-left, .arrow-right, .arrow-up {
-    pointer-events: auto;
-    z-index: 10;
+.flip-card:hover .flip-card-front {
+    height: 40%;
+}
+
+.flip-card:hover .flip-card-back {
+    height: 60%;
+    opacity: 1;
+}
+
+.flip-card .title {
+    color: #00ffcc;
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+/* Remove the old transform styles */
+.flip-card:hover .flip-card-inner {
+    transform: none;
 }
