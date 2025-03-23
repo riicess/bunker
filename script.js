@@ -117,6 +117,17 @@ document.addEventListener('DOMContentLoaded', () => {
         card.style.transform = 'none';
     });
 
+    // Remove flip card related event listeners
+    document.querySelectorAll('.expandable-card').forEach(card => {
+        card.addEventListener('mouseenter', () => {
+            card.style.transform = 'scale(1.05)';
+        });
+        
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = 'scale(1)';
+        });
+    });
+
     // Function to apply consistent styling to all arrows
     function applyArrowStyles() {
         // Select all arrows
@@ -271,6 +282,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const flipCards = document.querySelectorAll('.flip-card');
         flipCards.forEach(card => {
             card.classList.remove('expanded');
+        });
+
+        // Reset expanded cards
+        const expandableCards = document.querySelectorAll('.expandable-card');
+        expandableCards.forEach(card => {
+            card.style.transform = 'scale(1)';
         });
         
         // Reapply arrow styles
