@@ -312,12 +312,13 @@ input[id="radio-4"]:checked ~ #navigation .glider {
 
 /* Fancy card styles - dark theme */
 .fancy-card {
-    padding: 1.5em 1em;
+    padding: 1em;
     background: rgba(34, 34, 34, 0.8);
     position: relative;
     overflow: visible;
     transform-style: preserve-3d;
-    height: 300px; /* Reduced height */
+    height: 260px; /* Reduced height */
+    border-radius: 30px;
 }
 
 /* Card flip mechanism - Fix for hover functionality */
@@ -394,8 +395,9 @@ input[id="radio-4"]:checked ~ #navigation .glider {
     height: 100%;
     justify-content: center;
     align-items: center;
-    gap: 30px;
+    gap: 60px; /* More space between cards */
     padding: 20px;
+    margin-bottom: 40px; /* Add space for arrow at bottom */
 }
 
 .side-card {
@@ -512,8 +514,8 @@ input[id="radio-4"]:checked ~ #navigation .glider {
 
 /* Replace Flip Card Styles with new Card Hover Styles */
 .expandable-card {
-    width: 200px; /* Slightly smaller base width */
-    height: 220px; /* Smaller initial height */
+    width: 200px;
+    height: 180px;
     margin: 0 15px;
     padding: 15px;
     background: #333;
@@ -522,44 +524,27 @@ input[id="radio-4"]:checked ~ #navigation .glider {
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     overflow: hidden;
     cursor: pointer;
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .expandable-card:hover {
-    transform: scale(1.15); /* Larger scale on hover */
-    width: 240px; /* Wider on hover */
-    height: 280px; /* Taller on hover */
-    box-shadow: 0 0 30px rgba(0, 255, 204, 0.3);
-    z-index: 3; /* Ensure it stays on top */
+    transform: scale(1.1);
+    box-shadow: 0 0 30px rgba(0, 255, 204, 0.5);
+    z-index: 2;
 }
 
 .expandable-card .card-content {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
+    text-align: center;
 }
 
 .expandable-card .title {
     color: #00ffcc;
-    font-size: 1.2em;
-    margin-bottom: 15px;
-}
-
-.expandable-card .description {
-    color: #f0f0f0;
-    font-size: 1em;
-    opacity: 0;
-    max-height: 0;
-    margin-top: 0;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    overflow: hidden;
-}
-
-.expandable-card:hover .description {
-    opacity: 1;
-    max-height: 200px;
-    margin-top: 15px;
+    font-size: 1.4em;
+    font-weight: bold;
 }
 
 /* Card entrance animations */
@@ -598,9 +583,9 @@ input[id="radio-4"]:checked ~ #navigation .glider {
 #skills-content .card-container {
     justify-content: center;
     align-items: center;
-    height: calc(100% - 40px); /* Reduced padding */
+    height: calc(100% - 40px);
     padding: 20px;
-    gap: 20px;
+    gap: 30px; /* Increased gap between cards */
 }
 
 #projects-content .fancy-card,
@@ -608,14 +593,158 @@ input[id="radio-4"]:checked ~ #navigation .glider {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    height: 100%;
+    height: 260px; /* Match fancy-card height */
 }
 
 #projects-content .expandable-card,
 #skills-content .expandable-card {
-    height: 200px;
+    height: 180px; /* Smaller initial height */
     margin: 10px;
     display: flex;
     flex-direction: column;
     justify-content: center;
+}
+
+/* Fix arrow positioning in fancy cards */
+.fancy-card .arrow-right,
+.fancy-card .arrow-left {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    top: auto;
+}
+
+/* Update expandable card styles */
+.expandable-card {
+    width: 200px;
+    height: 180px;
+    margin: 0 15px;
+    padding: 15px;
+    background: #333;
+    border-radius: 1rem;
+    border: 1px solid #00ffcc;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.expandable-card:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 30px rgba(0, 255, 204, 0.5);
+    z-index: 2;
+}
+
+.expandable-card .card-content {
+    text-align: center;
+}
+
+.expandable-card .title {
+    color: #00ffcc;
+    font-size: 1.4em;
+    font-weight: bold;
+}
+
+/* New fullscreen overlay styles */
+.card-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 1000;
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.card-overlay.active {
+    display: flex;
+    opacity: 1;
+}
+
+.overlay-content {
+    width: 80%;
+    height: 80%;
+    margin: auto;
+    background: #222;
+    border-radius: 20px;
+    padding: 30px;
+    position: relative;
+    border: 1px solid #00ffcc;
+    box-shadow: 0 0 50px rgba(0, 255, 204, 0.3);
+}
+
+.skill-icons {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 30px;
+}
+
+.skill-icon {
+    width: 100px;
+    height: 100px;
+    border-radius: 15px;
+    background: #333;
+    padding: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.skill-icon:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 0 30px rgba(0, 255, 204, 0.3);
+}
+
+.skill-tooltip {
+    position: absolute;
+    bottom: 120%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #333;
+    padding: 10px 15px;
+    border-radius: 10px;
+    border: 1px solid #00ffcc;
+    color: #f0f0f0;
+    font-size: 14px;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.skill-icon:hover .skill-tooltip {
+    opacity: 1;
+    visibility: visible;
+    bottom: 130%;
+}
+
+.close-overlay {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #333;
+    border: 1px solid #00ffcc;
+    color: #00ffcc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.close-overlay:hover {
+    background: #00ffcc;
+    color: #333;
 }

@@ -226,6 +226,50 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // Add click handlers for expandable cards
+    document.querySelectorAll('.expandable-card').forEach(card => {
+        card.addEventListener('click', () => {
+            const title = card.querySelector('.title').textContent;
+            const description = card.querySelector('.description').textContent;
+            
+            // Create and show overlay
+            const overlay = document.createElement('div');
+            overlay.className = 'card-overlay';
+            overlay.innerHTML = `
+                <div class="overlay-content">
+                    <h2 style="color: #00ffcc; font-size: 24px;">${title}</h2>
+                    <p style="color: #f0f0f0; margin-top: 20px;">${description}</p>
+                    <div class="skill-icons">
+                        <div class="skill-icon">
+                            <img src="icons/html.png" alt="HTML">
+                            <div class="skill-tooltip">HTML: Building web structure</div>
+                        </div>
+                        <div class="skill-icon">
+                            <img src="icons/css.png" alt="CSS">
+                            <div class="skill-tooltip">CSS: Styling and animations</div>
+                        </div>
+                        <div class="skill-icon">
+                            <img src="icons/js.png" alt="JavaScript">
+                            <div class="skill-tooltip">JavaScript: Interactive features</div>
+                        </div>
+                    </div>
+                    <div class="close-overlay">
+                        <i class="fas fa-times"></i>
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(overlay);
+            setTimeout(() => overlay.classList.add('active'), 10);
+            
+            // Close overlay handler
+            overlay.querySelector('.close-overlay').addEventListener('click', () => {
+                overlay.classList.remove('active');
+                setTimeout(() => overlay.remove(), 300);
+            });
+        });
+    });
+
     // Function to apply consistent styling to all arrows
     function applyArrowStyles() {
         // Select all arrows
