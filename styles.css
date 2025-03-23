@@ -231,6 +231,12 @@ input[id="radio-4"]:checked ~ .container .content-wrapper {
     opacity: 0;
     transform: translateY(20px);
     transition: opacity 0.5s ease, transform 0.5s ease;
+    z-index: 10;
+}
+
+.delayed-arrow.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 /* Navigation tabs */
@@ -683,6 +689,17 @@ input[id="radio-4"]:checked ~ #navigation .glider {
     opacity: 1;
 }
 
+.card-overlay {
+    transform: scale(0.95);
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.card-overlay.active {
+    transform: scale(1);
+    opacity: 1;
+}
+
 .overlay-content {
     width: 80%;
     height: 80%;
@@ -703,14 +720,23 @@ input[id="radio-4"]:checked ~ #navigation .glider {
 }
 
 .skill-icon {
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
     border-radius: 15px;
     background: #333;
-    padding: 15px;
+    padding: 10px;
     cursor: pointer;
     transition: all 0.3s ease;
     position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.skill-icon img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
 }
 
 .skill-icon:hover {

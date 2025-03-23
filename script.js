@@ -317,14 +317,17 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Function to show delayed arrow
     function showDelayedArrow(targetSection, targetIndex) {
-        if ((targetSection === 'home' && targetIndex === 2) || 
-            (targetSection === 'about' && targetIndex === 2)) {
-            setTimeout(() => {
-                const delayedArrow = document.querySelector(`#${targetSection}-content .delayed-arrow`);
-                if (delayedArrow) {
-                    delayedArrow.classList.add('visible');
-                }
-            }, 500);
+        const delayedArrow = document.querySelector(`#${targetSection}-content .delayed-arrow`);
+        if (delayedArrow) {
+            if (targetIndex === 2) {
+                delayedArrow.classList.add('visible');
+                delayedArrow.style.opacity = '1';
+                delayedArrow.style.transform = 'translateY(0)';
+            } else {
+                delayedArrow.classList.remove('visible');
+                delayedArrow.style.opacity = '0';
+                delayedArrow.style.transform = 'translateY(20px)';
+            }
         }
     }
 
