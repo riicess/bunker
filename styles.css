@@ -731,6 +731,7 @@ input[id="radio-4"]:checked ~ #navigation .glider {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
 }
 
 .skill-icon img {
@@ -787,4 +788,47 @@ input[id="radio-4"]:checked ~ #navigation .glider {
 .close-overlay:hover {
     background: #00ffcc;
     color: #333;
+}
+
+.lang-label {
+    color: #00ffcc;
+    font-size: 12px;
+    margin-top: 8px;
+    text-align: center;
+}
+
+.chat-bubble {
+    position: absolute;
+    top: -60px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #333;
+    color: #f0f0f0;
+    padding: 8px 12px;
+    border-radius: 15px;
+    border: 1px solid #00ffcc;
+    font-size: 12px;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.chat-bubble:after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 6px 6px 0;
+    border-style: solid;
+    border-color: #00ffcc transparent transparent;
+}
+
+.skill-icon:hover .chat-bubble {
+    opacity: 1;
+    visibility: visible;
+    top: -70px;
 }

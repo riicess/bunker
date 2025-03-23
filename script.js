@@ -152,55 +152,19 @@ document.addEventListener('DOMContentLoaded', () => {
         card.addEventListener('click', () => {
             const title = card.querySelector('.title').textContent;
             const parentCard = card.closest('.fancy-card');
+            const parentSection = parentCard.closest('.page-content').id;
             
-            // Get correct content based on card title
-            let content = '';
+            // Handle redirects based on section and card title
             if (title === 'Programming Languages') {
-                content = `
-                    <div class="skill-icons">
-                        <div class="skill-icon">
-                            <img src="icons/html.png" alt="HTML">
-                            <div class="skill-tooltip">HTML: Building web structure</div>
-                        </div>
-                        <div class="skill-icon">
-                            <img src="icons/css.png" alt="CSS">
-                            <div class="skill-tooltip">CSS: Styling and animations</div>
-                        </div>
-                        <div class="skill-icon">
-                            <img src="icons/js.png" alt="JavaScript">
-                            <div class="skill-tooltip">JavaScript: Interactive features</div>
-                        </div>
-                    </div>
-                `;
+                window.location.href = '/skills';
+                return;
             } else if (title === 'Tools') {
-                content = `<p style="color: #f0f0f0; margin-top: 20px;">Development tools I use</p>`;
-            } else if (title === 'Web Projects') {
-                content = `<p style="color: #f0f0f0; margin-top: 20px;">My web development projects</p>`;
-            } else if (title === 'All Projects') {
-                content = `<p style="color: #f0f0f0; margin-top: 20px;">All my programming projects</p>`;
+                window.location.href = '/tools';
+                return;
+            } else if (parentSection === 'projects-content' || title === 'Projects') {
+                window.location.href = '/projects';
+                return;
             }
-            
-            const overlay = document.createElement('div');
-            overlay.className = 'card-overlay';
-            overlay.innerHTML = `
-                <div class="overlay-content">
-                    <h2 style="color: #00ffcc; font-size: 24px;">${title}</h2>
-                    ${content}
-                    <div class="close-overlay">
-                        <i class="fas fa-times"></i>
-                    </div>
-                </div>
-            `;
-            
-            document.body.appendChild(overlay);
-            requestAnimationFrame(() => overlay.classList.add('active'));
-            
-            overlay.querySelector('.close-overlay').addEventListener('click', () => {
-                overlay.classList.remove('active');
-                setTimeout(() => {
-                    overlay.remove();
-                }, 300);
-            });
         });
     });
 
