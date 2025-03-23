@@ -131,9 +131,10 @@ input[id="radio-2"]:checked ~ .container .content-wrapper {
     align-items: center;
     justify-content: space-between;
     height: 100%;
+    position: relative; /* Added for arrow positioning */
 }
 
-/* Arrow styles - old style with borders */
+/* Arrow styles - with matching glow to radio buttons */
 .arrow-down, .arrow-left, .arrow-right, .arrow-up {
     width: 40px;
     height: 40px;
@@ -142,16 +143,41 @@ input[id="radio-2"]:checked ~ .container .content-wrapper {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 20px;
     cursor: pointer;
     transition: all 0.3s ease;
-    border: 2px solid #00ffcc;  /* Added border */
-    box-shadow: 0 0 10px rgba(0, 255, 204, 0.3);  /* Added glow */
+    border: 1px solid #00ffcc;  /* Matches radio button border */
+    box-shadow: 0 0 20px rgba(0, 255, 204, 0.5);  /* Matches radio button glow */
     -webkit-tap-highlight-color: transparent; /* Remove tap highlight on mobile */
+    position: absolute; /* Changed to absolute for positioning */
+}
+
+/* Repositioned arrows */
+.arrow-down {
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.arrow-up {
+    top: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.arrow-left {
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.arrow-right {
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 .arrow-down i, .arrow-left i, .arrow-right i, .arrow-up i {
-    color: #00ffcc;  /* Changed color */
+    color: #00ffcc;
     font-size: 18px;
     transition: all 0.3s ease;
 }
@@ -159,12 +185,28 @@ input[id="radio-2"]:checked ~ .container .content-wrapper {
 .arrow-down:hover, .arrow-left:hover, .arrow-right:hover, .arrow-up:hover {
     background: #333333;
     border-color: #00ffcc;
-    box-shadow: 0 0 15px rgba(0, 255, 204, 0.5);
-    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(0, 255, 204, 0.7); /* Enhanced glow on hover */
+    transform: scale(1.1) translateX(-45%) translateY(-45%);
+}
+
+.arrow-right:hover {
+    transform: scale(1.1) translateX(0) translateY(-45%);
+}
+
+.arrow-left:hover {
+    transform: scale(1.1) translateX(0) translateY(-45%);
+}
+
+.arrow-down:hover {
+    transform: scale(1.1) translateX(-45%) translateY(0);
+}
+
+.arrow-up:hover {
+    transform: scale(1.1) translateX(-45%) translateY(0);
 }
 
 .arrow-down:hover i, .arrow-left:hover i, .arrow-right:hover i, .arrow-up:hover i {
-    color: #ffffff;  /* Changed hover color */
+    color: #ffffff;
 }
 
 .arrow-up i {
@@ -254,7 +296,7 @@ input[id="radio-2"]:checked ~ #navigation .glider {
     perspective: 1000px;
 }
 
-/* Card flip mechanism */
+/* Card flip mechanism - Fix for hover functionality */
 .card-inner {
     position: relative;
     width: 100%;
@@ -264,7 +306,9 @@ input[id="radio-2"]:checked ~ #navigation .glider {
     transform-style: preserve-3d;
 }
 
-.fancy-card:hover .card-inner {
+/* The hover effect needs to be on the parent container */
+.side-card:hover .card-inner,
+.fancy-card:hover > .card-inner {
     transform: rotateY(180deg);
 }
 
@@ -317,6 +361,27 @@ input[id="radio-2"]:checked ~ #navigation .glider {
     margin-top: 10px;
     line-height: 1.5;
     text-align: left;
+}
+
+/* For the sideways layout */
+.card-container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: space-between;
+}
+
+.side-card {
+    width: 48%;
+    height: 90%;
+    margin: 0 1%;
+    perspective: 1000px; /* Added for 3D effect */
+}
+
+/* Fixed height for the backside content */
+.back-content {
+    height: 100%;
+    overflow-y: auto;
 }
 
 /* Responsive design with improved performance for mobile */
@@ -387,24 +452,4 @@ input[id="radio-2"]:checked ~ #navigation .glider {
     .arrow-down i, .arrow-left i, .arrow-right i, .arrow-up i {
         font-size: 16px;
     }
-}
-
-/* For the sideways layout */
-.card-container {
-    display: flex;
-    width: 100%;
-    height: 100%;
-    justify-content: space-between;
-}
-
-.side-card {
-    width: 48%;
-    height: 90%;
-    margin: 0 1%;
-}
-
-/* Fixed height for the backside content */
-.back-content {
-    height: 100%;
-    overflow-y: auto;
 }

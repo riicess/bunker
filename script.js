@@ -3,8 +3,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const homeRadio = document.getElementById('radio-1');
     const aboutRadio = document.getElementById('radio-2');
 
+    // Apply proper arrow styles to all arrows initially
+    applyArrowStyles();
+
     // Set up arrow navigation
-    const arrows = document.querySelectorAll('.arrow-down, .arrow-left, .arrow-right');
+    const arrows = document.querySelectorAll('.arrow-down, .arrow-left, .arrow-right, .arrow-up');
     
     // Add click event to all arrows
     arrows.forEach(arrow => {
@@ -75,34 +78,84 @@ document.addEventListener('DOMContentLoaded', () => {
                 cardInners.forEach(inner => {
                     inner.style.transform = 'rotateY(0deg)';
                 });
+
+                // Reapply arrow styles after card change
+                applyArrowStyles();
             }, 300);
         });
     });
     
+    // Function to apply consistent styling to all arrows
+    function applyArrowStyles() {
+        // Select all arrows
+        const allArrows = document.querySelectorAll('.arrow-down, .arrow-left, .arrow-right, .arrow-up');
+        
+        allArrows.forEach(arrow => {
+            // First remove any position-specific inline styles that might interfere
+            arrow.style.position = '';
+            arrow.style.bottom = '';
+            arrow.style.left = '';
+            arrow.style.right = '';
+            arrow.style.top = '';
+            arrow.style.transform = '';
+            
+            // Make sure each arrow has the right icon
+            const iconElement = arrow.querySelector('i');
+            if (iconElement) {
+                if (arrow.classList.contains('arrow-down')) {
+                    iconElement.className = 'fas fa-chevron-down';
+                } else if (arrow.classList.contains('arrow-up')) {
+                    iconElement.className = 'fas fa-chevron-up';
+                } else if (arrow.classList.contains('arrow-left')) {
+                    iconElement.className = 'fas fa-chevron-left';
+                } else if (arrow.classList.contains('arrow-right')) {
+                    iconElement.className = 'fas fa-chevron-right';
+                }
+            }
+        });
+    }
+    
     // Function to update arrow directions based on active card
     function updateArrows(section, activeIndex) {
-        const sectionArrows = document.querySelectorAll(`#${section}-content .arrow-down, #${section}-content .arrow-left, #${section}-content .arrow-right`);
+        const sectionArrows = document.querySelectorAll(`#${section}-content .arrow-down, #${section}-content .arrow-left, #${section}-content .arrow-right, #${section}-content .arrow-up`);
         const maxIndex = document.querySelectorAll(`#${section}-content .card`).length - 1;
         
-        // Reset all arrows
+        // Reset all arrows - keep their original classes
         sectionArrows.forEach(arrow => {
-            // Remove all directional classes first
-            arrow.classList.remove('arrow-up', 'arrow-left', 'arrow-right', 'arrow-down');
+            // Determine and maintain original direction class
+            let originalDirection = '';
+            if (arrow.classList.contains('arrow-down')) originalDirection = 'down';
+            else if (arrow.classList.contains('arrow-up')) originalDirection = 'up';
+            else if (arrow.classList.contains('arrow-left')) originalDirection = 'left';
+            else if (arrow.classList.contains('arrow-right')) originalDirection = 'right';
             
-            // Determine original direction class
-            if (arrow.classList.contains('arrow-down') || arrow.classList.contains('arrow-up')) {
-                arrow.classList.add('arrow-down');
-                arrow.querySelector('i').className = 'fas fa-chevron-down';
-            } else if (arrow.classList.contains('arrow-left')) {
-                arrow.classList.add('arrow-left');
-                arrow.querySelector('i').className = 'fas fa-chevron-left';
-            } else if (arrow.classList.contains('arrow-right')) {
-                arrow.classList.add('arrow-right');
-                arrow.querySelector('i').className = 'fas fa-chevron-right';
+            // Reset to original direction
+            arrow.className = `arrow-${originalDirection}`;
+            
+            // Reset delayed-arrow class if it had one
+            if (originalDirection === 'left' || originalDirection === 'right') {
+                if (arrow.hasAttribute('data-delayed')) {
+                    arrow.classList.add('delayed-arrow');
+                }
+            }
+            
+            // Set proper icon
+            let iconClass = 'fas fa-chevron-';
+            switch(originalDirection) {
+                case 'down': iconClass += 'down'; break;
+                case 'up': iconClass += 'up'; break;
+                case 'left': iconClass += 'left'; break;
+                case 'right': iconClass += 'right'; break;
+            }
+            
+            // Update icon
+            const iconElement = arrow.querySelector('i');
+            if (iconElement) {
+                iconElement.className = iconClass;
             }
         });
         
-        // If we're at the last card, set the arrow to point up (to first card)
+        // If we're at the last card, update arrow direction
         if (activeIndex === maxIndex) {
             const arrow = document.querySelector(`#${section}-content .card.card-active .arrow-down, 
                                                  #${section}-content .card.card-active .arrow-left,
@@ -112,20 +165,35 @@ document.addEventListener('DOMContentLoaded', () => {
                     arrow.classList.remove('arrow-down');
                     arrow.classList.add('arrow-up');
                     arrow.setAttribute('data-card-index', '0');
-                    arrow.querySelector('i').className = 'fas fa-chevron-up';
+                    
+                    const iconElement = arrow.querySelector('i');
+                    if (iconElement) {
+                        iconElement.className = 'fas fa-chevron-up';
+                    }
                 } else if (arrow.classList.contains('arrow-left')) {
                     arrow.classList.remove('arrow-left');
                     arrow.classList.add('arrow-right');
                     arrow.setAttribute('data-card-index', '0');
-                    arrow.querySelector('i').className = 'fas fa-chevron-right';
+                    
+                    const iconElement = arrow.querySelector('i');
+                    if (iconElement) {
+                        iconElement.className = 'fas fa-chevron-right';
+                    }
                 } else if (arrow.classList.contains('arrow-right')) {
                     arrow.classList.remove('arrow-right');
                     arrow.classList.add('arrow-left');
                     arrow.setAttribute('data-card-index', '0');
-                    arrow.querySelector('i').className = 'fas fa-chevron-left';
+                    
+                    const iconElement = arrow.querySelector('i');
+                    if (iconElement) {
+                        iconElement.className = 'fas fa-chevron-left';
+                    }
                 }
             }
         }
+        
+        // Reapply arrow styles after updating directions
+        applyArrowStyles();
     }
     
     // Handle tab switching
@@ -166,6 +234,9 @@ document.addEventListener('DOMContentLoaded', () => {
             arrow.style.opacity = '0';
             arrow.style.transform = 'translateY(20px)';
         });
+        
+        // Reapply arrow styles
+        applyArrowStyles();
     }
     
     // Prevent arrow click events from triggering card flips
@@ -176,6 +247,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
     
+    // Initial application of arrow styles
+    applyArrowStyles();
+    
     // Debug - log to console
-    console.log("Enhanced script loaded with card flip animations and old arrow styles");
+    console.log("Enhanced script loaded with fixed card flip animations and consistent arrow styles");
 });
