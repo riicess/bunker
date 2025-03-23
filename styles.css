@@ -520,7 +520,7 @@ input[id="radio-4"]:checked ~ #navigation .glider {
     }
     
     .glider {
-        width: 65px; /* Match tab width */
+        width: 20px; /* Match tab width */
         height: 30px;
     }
     
