@@ -1,4 +1,5 @@
-body, html {
+body,
+html {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
@@ -12,7 +13,7 @@ body, html {
     left: 0;
     width: 100%;
     height: 100vh;
-    background: 
+    background:
         radial-gradient(circle at 100% 50%, #ff00cc 0% 2%, #00ffcc 3% 5%, transparent 6%),
         radial-gradient(circle at 0% 50%, #ff00cc 0% 2%, #00ffcc 3% 5%, transparent 6%),
         radial-gradient(ellipse at 50% 0%, #3300ff 0% 3%, transparent 4%) 10px 10px,
@@ -28,6 +29,7 @@ body, html {
     0% {
         background-position: 0 0, 0 0, 10px 10px, 20px 20px, 0 0;
     }
+
     100% {
         background-position: 50px 50px, -50px -50px, 60px 60px, 80px 80px, 0 0;
     }
@@ -40,7 +42,8 @@ body, html {
     height: 100%;
     display: flex;
     transition: transform 0.5s ease;
-    transform: translateX(-25%); /* Start at home position */
+    transform: translateX(-25%);
+    /* Start at home position */
 }
 
 /* Page content containers */
@@ -52,20 +55,24 @@ body, html {
     overflow: hidden;
 }
 
-input[id="radio-1"]:checked ~ .container .content-wrapper {
-    transform: translateX(-25%); /* Home */
+input[id="radio-1"]:checked~.container .content-wrapper {
+    transform: translateX(-25%);
+    /* Home */
 }
 
-input[id="radio-2"]:checked ~ .container .content-wrapper {
-    transform: translateX(-50%); /* About */
+input[id="radio-2"]:checked~.container .content-wrapper {
+    transform: translateX(-50%);
+    /* About */
 }
 
-input[id="radio-3"]:checked ~ .container .content-wrapper {
-    transform: translateX(0); /* Projects */
+input[id="radio-3"]:checked~.container .content-wrapper {
+    transform: translateX(0);
+    /* Projects */
 }
 
-input[id="radio-4"]:checked ~ .container .content-wrapper {
-    transform: translateX(-75%); /* Skills */
+input[id="radio-4"]:checked~.container .content-wrapper {
+    transform: translateX(-75%);
+    /* Skills */
 }
 
 /* Card slider */
@@ -73,7 +80,8 @@ input[id="radio-4"]:checked ~ .container .content-wrapper {
     position: relative;
     width: 100%;
     height: 100%;
-    perspective: 1000px; /* 3D perspective */
+    perspective: 1000px;
+    /* 3D perspective */
 }
 
 /* Card styles */
@@ -83,7 +91,7 @@ input[id="radio-4"]:checked ~ .container .content-wrapper {
     border-radius: 30px;
     background: rgba(33, 33, 33, 0.5);
     box-shadow: 15px 15px 30px rgba(25, 25, 25, 0.5),
-                -15px -15px 30px rgba(60, 60, 60, 0.5);
+        -15px -15px 30px rgba(60, 60, 60, 0.5);
     position: absolute;
     top: 50%;
     left: 50%;
@@ -98,7 +106,8 @@ input[id="radio-4"]:checked ~ .container .content-wrapper {
     opacity: 0;
     z-index: 1;
     transform-style: preserve-3d;
-    will-change: transform, opacity; /* Performance optimization */
+    will-change: transform, opacity;
+    /* Performance optimization */
 }
 
 .card.card-active {
@@ -106,8 +115,8 @@ input[id="radio-4"]:checked ~ .container .content-wrapper {
     opacity: 1;
     z-index: 2;
     box-shadow: 15px 15px 30px rgba(25, 25, 25, 0.5),
-                -15px -15px 30px rgba(60, 60, 60, 0.5),
-                0 0 20px rgba(0, 255, 204, 0.3);
+        -15px -15px 30px rgba(60, 60, 60, 0.5),
+        0 0 20px rgba(0, 255, 204, 0.3);
 }
 
 .card.card-exit {
@@ -139,11 +148,15 @@ input[id="radio-4"]:checked ~ .container .content-wrapper {
     align-items: center;
     justify-content: space-between;
     height: 100%;
-    position: relative; /* Added for arrow positioning */
+    position: relative;
+    /* Added for arrow positioning */
 }
 
 /* Arrow styles - with matching glow to radio buttons */
-.arrow-down, .arrow-left, .arrow-right, .arrow-up {
+.arrow-down,
+.arrow-left,
+.arrow-right,
+.arrow-up {
     width: 40px;
     height: 40px;
     border-radius: 50%;
@@ -153,10 +166,14 @@ input[id="radio-4"]:checked ~ .container .content-wrapper {
     justify-content: center;
     cursor: pointer;
     transition: all 0.3s ease;
-    border: 1px solid #00ffcc;  /* Matches radio button border */
-    box-shadow: 0 0 20px rgba(0, 255, 204, 0.5);  /* Matches radio button glow */
-    -webkit-tap-highlight-color: transparent; /* Remove tap highlight on mobile */
-    position: absolute; /* Changed to absolute for positioning */
+    border: 1px solid #00ffcc;
+    /* Matches radio button border */
+    box-shadow: 0 0 20px rgba(0, 255, 204, 0.5);
+    /* Matches radio button glow */
+    -webkit-tap-highlight-color: transparent;
+    /* Remove tap highlight on mobile */
+    position: absolute;
+    /* Changed to absolute for positioning */
 }
 
 /* Repositioned arrows */
@@ -184,7 +201,10 @@ input[id="radio-4"]:checked ~ .container .content-wrapper {
     transform: translateY(-50%);
 }
 
-.arrow-down i, .arrow-left i, .arrow-right i, .arrow-up i {
+.arrow-down i,
+.arrow-left i,
+.arrow-right i,
+.arrow-up i {
     color: #00ffcc;
     font-size: 18px;
     transition: all 0.3s ease;
@@ -194,32 +214,39 @@ input[id="radio-4"]:checked ~ .container .content-wrapper {
 .arrow-down:hover {
     background: #333333;
     border-color: #00ffcc;
-    box-shadow: 0 0 20px rgba(0, 255, 204, 0.7); /* Enhanced glow on hover */
+    box-shadow: 0 0 20px rgba(0, 255, 204, 0.7);
+    /* Enhanced glow on hover */
     transform: translateX(-50%) scale(1.1);
 }
 
 .arrow-up:hover {
     background: #333333;
     border-color: #00ffcc;
-    box-shadow: 0 0 20px rgba(0, 255, 204, 0.7); /* Enhanced glow on hover */
+    box-shadow: 0 0 20px rgba(0, 255, 204, 0.7);
+    /* Enhanced glow on hover */
     transform: translateX(-50%) scale(1.1);
 }
 
 .arrow-left:hover {
     background: #333333;
     border-color: #00ffcc;
-    box-shadow: 0 0 20px rgba(0, 255, 204, 0.7); /* Enhanced glow on hover */
+    box-shadow: 0 0 20px rgba(0, 255, 204, 0.7);
+    /* Enhanced glow on hover */
     transform: translateY(-50%) scale(1.1);
 }
 
 .arrow-right:hover {
     background: #333333;
     border-color: #00ffcc;
-    box-shadow: 0 0 20px rgba(0, 255, 204, 0.7); /* Enhanced glow on hover */
+    box-shadow: 0 0 20px rgba(0, 255, 204, 0.7);
+    /* Enhanced glow on hover */
     transform: translateY(-50%) scale(1.1);
 }
 
-.arrow-down:hover i, .arrow-left:hover i, .arrow-right:hover i, .arrow-up:hover i {
+.arrow-down:hover i,
+.arrow-left:hover i,
+.arrow-right:hover i,
+.arrow-up:hover i {
     color: #ffffff;
 }
 
@@ -243,22 +270,23 @@ input[id="radio-4"]:checked ~ .container .content-wrapper {
 #navigation {
     position: fixed;
     bottom: 20px;
-    left: 0;
-    right: 0;
+    left: 50%;
+    transform: translateX(-50%);
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 999;
+    width: 280px; /* Fixed width instead of 100% */
 }
 
 .tabs {
+    width: 100%; /* Take full width of the navigation container */
     display: flex;
     position: relative;
     background-color: #242424;
     box-shadow: 0 0 20px rgba(0, 255, 204, 0.5);
     padding: 5px;
     border-radius: 99px;
-    width: 280px;
     border: 1px solid rgba(0, 255, 204, 0.3);
     justify-content: space-around;
 }
@@ -279,30 +307,36 @@ input[type="radio"] {
     border-radius: 99px;
     cursor: pointer;
     transition: color 0.15s ease-in;
-    z-index: 2; /* Above glider */
-    position: relative; /* Ensure text stays above glider */
+    z-index: 2;
+    /* Above glider */
+    position: relative;
+    /* Ensure text stays above glider */
     margin: 0;
     padding: 0 2px;
 }
 
-input[type="radio"]:checked + label {
+input[type="radio"]:checked+label {
     color: #00ffcc;
 }
 
-input[id="radio-1"]:checked ~ #navigation .glider {
-    transform: translateX(71px); /* Home */
+input[id="radio-1"]:checked~#navigation .glider {
+    transform: translateX(71px);
+    /* Home */
 }
 
-input[id="radio-2"]:checked ~ #navigation .glider {
-    transform: translateX(142px); /* About */
+input[id="radio-2"]:checked~#navigation .glider {
+    transform: translateX(142px);
+    /* About */
 }
 
-input[id="radio-3"]:checked ~ #navigation .glider {
-    transform: translateX(0); /* Projects */
+input[id="radio-3"]:checked~#navigation .glider {
+    transform: translateX(0);
+    /* Projects */
 }
 
-input[id="radio-4"]:checked ~ #navigation .glider {
-    transform: translateX(213px); /* Skills */
+input[id="radio-4"]:checked~#navigation .glider {
+    transform: translateX(213px);
+    /* Skills */
 }
 
 .glider {
@@ -314,12 +348,43 @@ input[id="radio-4"]:checked ~ #navigation .glider {
     transition: transform 0.25s ease-out;
     border: 1px solid #00ffcc;
     left: 5px;
-    z-index: 1; /* Below tab text */
+    z-index: 1;
+    /* Below tab text */
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    #navigation {
+        width: 280px; /* Keep fixed width on mobile */
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .tabs {
+        width: 100%;
+        max-width: none;
+    }
+
+    .tab {
+        width: 65px;
+        font-size: 11px;
+    }
+}
+
+@media (max-width: 480px) {
+    #navigation {
+        width: 260px; /* Slightly smaller on very small screens */
+    }
+
+    .tabs {
+        padding: 4px;
+    }
 }
 
 /* Fancy card styles - dark theme */
 .fancy-card {
-    width: 400px;  /* Increased from 320px */
+    width: 400px;
+    /* Increased from 320px */
     height: 220px;
     padding: 1.5em;
     background: rgba(34, 34, 34, 0.8);
@@ -341,11 +406,12 @@ input[id="radio-4"]:checked ~ #navigation .glider {
 
 /* The hover effect needs to be on the parent container */
 .side-card:hover .card-inner,
-.fancy-card:hover > .card-inner {
+.fancy-card:hover>.card-inner {
     transform: rotateY(180deg);
 }
 
-.card-front, .card-back {
+.card-front,
+.card-back {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -372,7 +438,8 @@ input[id="radio-4"]:checked ~ #navigation .glider {
 }
 
 .card-title {
-    color: #00ffcc;  /* Updated for dark theme */
+    color: #00ffcc;
+    /* Updated for dark theme */
     font-size: 1.5em;
     line-height: normal;
     font-weight: 700;
@@ -384,13 +451,15 @@ input[id="radio-4"]:checked ~ #navigation .glider {
     font-size: 1em;
     font-weight: 400;
     line-height: 1.5em;
-    color: #ccc;  /* Updated for dark theme */
+    color: #ccc;
+    /* Updated for dark theme */
     transition: all 0.3s ease;
 }
 
 .detail-text {
     font-size: 14px;
-    color: #ddd;  /* Updated for dark theme */
+    color: #ddd;
+    /* Updated for dark theme */
     margin-top: 10px;
     line-height: 1.5;
     text-align: left;
@@ -404,15 +473,18 @@ input[id="radio-4"]:checked ~ #navigation .glider {
     justify-content: center;
     align-items: center;
     gap: 40px;
-    padding: 15px; /* Reduced padding */
-    margin-bottom: 40px; /* Add space for arrow at bottom */
+    padding: 15px;
+    /* Reduced padding */
+    margin-bottom: 40px;
+    /* Add space for arrow at bottom */
 }
 
 .side-card {
     width: 48%;
     height: 90%;
     margin: 0 1%;
-    perspective: 1000px; /* Added for 3D effect */
+    perspective: 1000px;
+    /* Added for 3D effect */
 }
 
 /* Fixed height for the backside content */
@@ -426,72 +498,118 @@ input[id="radio-4"]:checked ~ #navigation .glider {
     .card {
         width: 280px;
         height: 200px;
-        transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
-                    opacity 0.3s ease,
-                    box-shadow 0.3s ease;
+        transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+            opacity 0.3s ease,
+            box-shadow 0.3s ease;
     }
-    
+
     .fancy-card {
         padding: 1.5em 1em;
     }
-    
+
     .card-title {
         font-size: 1.2em;
     }
-    
+
     .small-desc {
         font-size: 0.9em;
     }
-    
+
     #navigation {
+        position: fixed;
         bottom: 20px;
+        left: 0;
+        right: 0;
+        display: flex;
+        justify-content: center;
+        /* This centers the tabs horizontally */
+        align-items: center;
+        z-index: 999;
+        width: 100%; /* Make sure it spans the entire width */
     }
-    
+
     /* Fix for stretched arrows on mobile */
-    .arrow-down, .arrow-left, .arrow-right, .arrow-up {
+    .arrow-down,
+    .arrow-left,
+    .arrow-right,
+    .arrow-up {
         width: 36px;
         height: 36px;
         min-width: 36px;
         min-height: 36px;
     }
-    
+
     .tabs {
-        width: 300px; /* Reduced from 360px */
-        padding: 8px; /* Reduced padding */
+        display: flex;
+        position: relative;
+        background-color: #242424;
+        box-shadow: 0 0 20px rgba(0, 255, 204, 0.5);
+        padding: 5px;
+        border-radius: 99px;
+        width: 280px;
+        /* Fixed width */
+        border: 1px solid rgba(0, 255, 204, 0.3);
+        justify-content: space-around;
+        margin: 0 auto;
+        /* Center the tabs container itself */
     }
-    
+
     .tab {
-        width: 70px; /* Smaller tabs */
-        font-size: 12px; /* Smaller font */
-        height: 35px; /* Reduced height */
+        width: 70px;
+        /* Smaller tabs */
+        font-size: 12px;
+        /* Smaller font */
+        height: 35px;
+        /* Reduced height */
     }
-    
+
+    input[id="radio-1"]:checked~#navigation .glider,
+    input[id="radio-2"]:checked~#navigation .glider,
+    input[id="radio-3"]:checked~#navigation .glider,
+    input[id="radio-4"]:checked~#navigation .glider {
+        /* Keep original transform values but ensure no additional offsets */
+    }
+
     .glider {
-        width: 70px; /* Match tab width */
-        height: 35px; /* Match tab height */
+        position: absolute;
+        height: 28px;
+        width: 65px;
+        background-color: #333333;
+        border-radius: 99px;
+        transition: transform 0.25s ease-out;
+        border: 1px solid #00ffcc;
+        left: 5px;
+        /* Base left position */
+        z-index: 1;
+        /* Below tab text */
     }
 
     /* Update glider positions */
-    input[id="radio-1"]:checked ~ #navigation .glider {
-        transform: translateX(78px); /* Adjusted position */
+    input[id="radio-1"]:checked~#navigation .glider {
+        transform: translateX(78px);
+        /* Adjusted position */
     }
-    
-    input[id="radio-2"]:checked ~ #navigation .glider {
-        transform: translateX(156px); /* Adjusted position */
+
+    input[id="radio-2"]:checked~#navigation .glider {
+        transform: translateX(156px);
+        /* Adjusted position */
     }
-    
-    input[id="radio-3"]:checked ~ #navigation .glider {
-        transform: translateX(0); /* Adjusted position */
+
+    input[id="radio-3"]:checked~#navigation .glider {
+        transform: translateX(0);
+        /* Adjusted position */
     }
-    
-    input[id="radio-4"]:checked ~ #navigation .glider {
-        transform: translateX(234px); /* Adjusted position */
+
+    input[id="radio-4"]:checked~#navigation .glider {
+        transform: translateX(234px);
+        /* Adjusted position */
     }
 
     /* Fix tools page layout */
     .content {
         padding: 20px;
-        padding-bottom: 80px; /* Add space for back button */
+        padding-bottom: 80px;
+        /* Add space for back button */
         min-height: calc(100vh - 100px);
         position: relative;
     }
@@ -510,70 +628,82 @@ input[id="radio-4"]:checked ~ #navigation .glider {
         width: 260px;
         height: 180px;
     }
-    
+
     .tabs {
-        width: 280px; /* Even smaller on phones */
+        width: 280px;
+        /* Even smaller on phones */
+        max-width: 90%; /* Take up to 90% of the screen width */
     }
-    
+
     .tab {
-        width: 65px; /* Smaller tabs */
-        font-size: 11px; /* Smaller font */
+        width: 65px;
+        /* Smaller tabs */
+        font-size: 11px;
+        /* Smaller font */
     }
-    
+
     .glider {
-        width: 20px; /* Match tab width */
+        width: 20px;
+        /* Match tab width */
         height: 30px;
     }
-    
+
     /* Update glider positions */
-    input[id="radio-1"]:checked ~ #navigation .glider {
+    input[id="radio-1"]:checked~#navigation .glider {
         transform: translateX(73px);
     }
-    
-    input[id="radio-2"]:checked ~ #navigation .glider {
+
+    input[id="radio-2"]:checked~#navigation .glider {
         transform: translateX(146px);
     }
-    
-    input[id="radio-3"]:checked ~ #navigation .glider {
+
+    input[id="radio-3"]:checked~#navigation .glider {
         transform: translateX(0);
     }
-    
-    input[id="radio-4"]:checked ~ #navigation .glider {
+
+    input[id="radio-4"]:checked~#navigation .glider {
         transform: translateX(219px);
     }
-    
+
     .tabs {
         width: 200px;
     }
-    
+
     .tab {
         width: 100px;
     }
-    
-    input[id="radio-2"]:checked ~ #navigation .glider {
+
+    input[id="radio-2"]:checked~#navigation .glider {
         transform: translateX(100px);
     }
-    
+
     .glider {
         width: 100px;
     }
-    
+
     /* Even smaller arrows for very small screens */
-    .arrow-down, .arrow-left, .arrow-right, .arrow-up {
+    .arrow-down,
+    .arrow-left,
+    .arrow-right,
+    .arrow-up {
         width: 32px;
         height: 32px;
         min-width: 32px;
         min-height: 32px;
     }
-    
-    .arrow-down i, .arrow-left i, .arrow-right i, .arrow-up i {
+
+    .arrow-down i,
+    .arrow-left i,
+    .arrow-right i,
+    .arrow-up i {
         font-size: 16px;
     }
 }
 
 /* Replace Flip Card Styles with new Card Hover Styles */
 .expandable-card {
-    width: 160px;  /* Adjusted width for better fit */
+    width: 160px;
+    /* Adjusted width for better fit */
     height: 180px;
     margin: 0 10px;
     padding: 15px;
@@ -598,7 +728,8 @@ input[id="radio-4"]:checked ~ #navigation .glider {
 .expandable-card .card-content {
     text-align: center;
     width: 100%;
-    padding: 0 5px; /* Reduced padding */
+    padding: 0 5px;
+    /* Reduced padding */
     box-sizing: border-box;
 }
 
@@ -626,6 +757,7 @@ input[id="radio-4"]:checked ~ #navigation .glider {
         transform: translate(-100%, -50%);
         opacity: 0;
     }
+
     to {
         transform: translate(-50%, -50%);
         opacity: 1;
@@ -637,6 +769,7 @@ input[id="radio-4"]:checked ~ #navigation .glider {
         transform: translate(100%, -50%);
         opacity: 0;
     }
+
     to {
         transform: translate(-50%, -50%);
         opacity: 1;
@@ -650,7 +783,8 @@ input[id="radio-4"]:checked ~ #navigation .glider {
     align-items: center;
     height: calc(100% - 40px);
     padding: 20px;
-    gap: 30px; /* Increased gap between cards */
+    gap: 30px;
+    /* Increased gap between cards */
 }
 
 #projects-content .fancy-card,
@@ -658,12 +792,14 @@ input[id="radio-4"]:checked ~ #navigation .glider {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    height: 260px; /* Match fancy-card height */
+    height: 260px;
+    /* Match fancy-card height */
 }
 
 #projects-content .expandable-card,
 #skills-content .expandable-card {
-    height: 180px; /* Smaller initial height */
+    height: 180px;
+    /* Smaller initial height */
     margin: 10px;
     display: flex;
     flex-direction: column;
@@ -682,7 +818,8 @@ input[id="radio-4"]:checked ~ #navigation .glider {
 
 /* Update expandable card styles */
 .expandable-card {
-    width: 160px;  /* Adjusted width for better fit */
+    width: 160px;
+    /* Adjusted width for better fit */
     height: 180px;
     margin: 0 10px;
     padding: 15px;
@@ -708,7 +845,8 @@ input[id="radio-4"]:checked ~ #navigation .glider {
 .expandable-card .card-content {
     text-align: center;
     width: 100%;
-    padding: 0 5px; /* Reduced padding */
+    padding: 0 5px;
+    /* Reduced padding */
     box-sizing: border-box;
 }
 
@@ -767,15 +905,19 @@ input[id="radio-4"]:checked ~ #navigation .glider {
 .skill-icons {
     display: flex;
     justify-content: center;
-    gap: 40px;  /* Increased gap */
+    gap: 40px;
+    /* Increased gap */
     margin-top: 30px;
 }
 
 .skill-icon {
-    width: 50px;  /* Reduced from 60px */
-    height: 50px;  /* Reduced from 60px */
+    width: 50px;
+    /* Reduced from 60px */
+    height: 50px;
+    /* Reduced from 60px */
     border-radius: 8px;
-    padding: 10px; /* Increased padding to prevent hover jitter */
+    padding: 10px;
+    /* Increased padding to prevent hover jitter */
     background: #333;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -789,8 +931,10 @@ input[id="radio-4"]:checked ~ #navigation .glider {
 }
 
 .skill-icon img {
-    width: 30px;  /* Reduced from 40px */
-    height: 30px;  /* Reduced from 40px */
+    width: 30px;
+    /* Reduced from 40px */
+    height: 30px;
+    /* Reduced from 40px */
     object-fit: contain;
 }
 
@@ -926,12 +1070,13 @@ input[id="radio-4"]:checked ~ #navigation .glider {
         flex-wrap: wrap;
         gap: 20px;
     }
-    
+
     .tools-grid {
         grid-template-columns: repeat(3, 1fr);
-        gap: 25px; /* Increased gap */
+        gap: 25px;
+        /* Increased gap */
     }
-    
+
     /* Make touch targets larger on mobile */
     .skill-icon,
     .tool-icon {
@@ -944,10 +1089,11 @@ input[id="radio-4"]:checked ~ #navigation .glider {
     .skill-icons {
         gap: 15px;
     }
-    
+
     .tools-grid {
         grid-template-columns: repeat(2, 1fr);
-        gap: 25px; /* Increased gap */
+        gap: 25px;
+        /* Increased gap */
     }
 }
 
@@ -988,31 +1134,39 @@ input[id="radio-4"]:checked ~ #navigation .glider {
 .projects-grid,
 .tools-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr); /* Fixed 4 columns */
-    gap: 25px; /* Increased gap */
-    padding: 10px; /* Reduced from 20px */
-    max-width: 800px; /* Limit maximum width */
+    grid-template-columns: repeat(4, 1fr);
+    /* Fixed 4 columns */
+    gap: 25px;
+    /* Increased gap */
+    padding: 10px;
+    /* Reduced from 20px */
+    max-width: 800px;
+    /* Limit maximum width */
     margin: 0 auto;
 }
 
 .tool-icon {
-    width: 70px; /* Slightly smaller */
+    width: 70px;
+    /* Slightly smaller */
     height: 70px;
     padding: 8px;
-    gap: 6px; /* Reduced gap between icon and label */
+    gap: 6px;
+    /* Reduced gap between icon and label */
 }
 
 @media (max-width: 768px) {
     .tools-grid {
         grid-template-columns: repeat(3, 1fr);
-        gap: 25px; /* Increased gap */
+        gap: 25px;
+        /* Increased gap */
     }
 }
 
 @media (max-width: 480px) {
     .tools-grid {
         grid-template-columns: repeat(2, 1fr);
-        gap: 25px; /* Increased gap */
+        gap: 25px;
+        /* Increased gap */
     }
 }
 
